@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shipping — GEO Supplements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="icon" type="image/x-icon" href="Images/logo.png">
+<style>
+  .shipping-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+  .shipping-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin: 40px 0; }
+  .shipping-card { 
+    background: var(--card); 
+    border: 1px solid var(--border); 
+    border-radius: 8px; 
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+  .shipping-card:hover { border-color: var(--green); box-shadow: var(--glow-green); transform: translateY(-4px); }
+  .shipping-card h3 { color: var(--green); margin-bottom: 12px; font-size: 18px; }
+  .shipping-card .price { font-size: 24px; font-weight: bold; color: var(--text); margin: 12px 0; }
+  .shipping-card .time { color: var(--text2); font-size: 14px; }
+  .info-section { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin: 20px 0; }
+  .info-section h3 { color: var(--green); margin-bottom: 16px; }
+  .info-section ul { margin-left: 20px; color: var(--text2); line-height: 1.8; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div id="loader">
+  <div class="loader-logo">GEO</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">GEO Supplements</a>
+  <div class="nav-links">
+    <a href="index.html"><i class="fa-solid fa-home"></i> Home</a>
+    <a href="index.html#categories"><i class="fa-solid fa-th"></i> Categories</a>
+    <a href="shop.html"><i class="fa-solid fa-bag-shopping"></i> Shop</a>
+    <a href="index.html#reviews"><i class="fa-solid fa-star"></i> Reviews</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button class="cart-btn" id="cartBtn">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Cart</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="index.html#categories" onclick="closeMobile()">Categories</a>
+  <a href="shop.html" onclick="closeMobile()">Shop</a>
+  <a href="index.html#reviews" onclick="closeMobile()">Reviews</a>
+</div>
+
+<section style="padding-top: 100px; padding-bottom: 60px;">
+  <div class="shipping-container reveal">
+    <div class="section-label">// SUPPORT</div>
+    <h2 class="section-title">SHIPPING <span style="color:var(--blue)">OPTIONS</span></h2>
+    <p class="section-sub" style="margin-bottom: 40px;">Fast, reliable delivery to your door.</p>
+
+    <div class="shipping-grid">
+      <div class="shipping-card">
+        <h3>📦 Standard Shipping</h3>
+        <div class="price">FREE*</div>
+        <div class="time">5-7 business days</div>
+        <p style="color: var(--text2); font-size: 13px; margin-top: 12px;">*Free on orders over $60</p>
+      </div>
+
+      <div class="shipping-card">
+        <h3>⚡ Express Shipping</h3>
+        <div class="price">$12.99</div>
+        <div class="time">2-3 business days</div>
+        <p style="color: var(--text2); font-size: 13px; margin-top: 12px;">Priority handling & tracking</p>
+      </div>
+
+      <div class="shipping-card">
+        <h3>🚀 Overnight Shipping</h3>
+        <div class="price">$24.99</div>
+        <div class="time">Next business day</div>
+        <p style="color: var(--text2); font-size: 13px; margin-top: 12px;">Guaranteed next morning</p>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3><i class="fa-solid fa-circle-info" style="margin-right: 8px;"></i> Processing Times</h3>
+      <ul>
+        <li><strong>Order Processing:</strong> Orders are processed within 24 hours (Mon-Fri)</li>
+        <li><strong>Weekend Orders:</strong> Processed on the next business day</li>
+        <li><strong>Holiday Orders:</strong> May take 2-3 business days during holidays</li>
+        <li><strong>Tracking:</strong> You'll receive a tracking number via email</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <h3><i class="fa-solid fa-box" style="margin-right: 8px;"></i> Packaging</h3>
+      <ul>
+        <li>All products are securely packaged to prevent damage</li>
+        <li>Discreet packaging with no product labels on the outside</li>
+        <li>Insulated padding for temperature-sensitive items</li>
+        <li>Signature required for orders over $150</li>
+      </ul>
+    </div>
+
+    <div class="info-section">
+      <h3><i class="fa-solid fa-globe" style="margin-right: 8px;"></i> Shipping Coverage</h3>
+      <ul>
+        <li><strong>Domestic:</strong> All 50 US states + territories</li>
+        <li><strong>Alaska & Hawaii:</strong> +$15 shipping charge</li>
+        <li><strong>International:</strong> Coming soon!</li>
+        <li><strong>PO Boxes:</strong> Standard shipping only</li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center;">
+      <p style="color: var(--text2); margin-bottom: 20px;">Need help with your order?</p>
+      <a href="track-order.html" class="btn-primary">Track Your Order →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">GEO Supplements</a>
+        <p>Premium performance supplements engineered for athletes who refuse to settle for average. Science-backed. Results-proven.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="shop.html">Protein</a></li>
+          <li><a href="shop.html">Gainer</a></li>
+          <li><a href="shop.html">Pre-Workout</a></li>
+          <li><a href="shop.html">Creatine</a></li>
+          <li><a href="shop.html">Vitamins</a></li>
+          <li><a href="shop.html">Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="lab-testing.html">Lab Testing</a></li>
+          <li><a href="athletes.html">Athletes</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="shipping.html">Shipping</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="track-order.html">Track Order</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GEO Supplements. All rights reserved. For demonstration only.</p>
+      <div class="footer-badges">
+        <div class="footer-badge">GMP Certified</div>
+        <div class="footer-badge">3rd Party Tested</div>
+        <div class="footer-badge">Georgia Made</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="productModal">
+  <div class="modal">
+    <div class="modal-img-side">
+      <img id="modalImg" src="" alt="">
+      <div class="modal-glow"></div>
+    </div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-cat" id="modalCat"></div>
+      <h2 class="modal-name" id="modalName"></h2>
+      <div class="modal-stars" id="modalStars"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-price-row">
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-price-old" id="modalOldPrice"></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" id="modalQtyMinus">−</button>
+        <input class="qty-num" id="modalQty" type="number" value="1" min="1" max="10" readonly>
+        <button class="qty-btn" id="modalQtyPlus">+</button>
+      </div>
+      <button class="modal-add-btn" id="modalAddBtn"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+      <div class="modal-features">
+        <div class="modal-feat">Lab Verified</div>
+        <div class="modal-feat">Free Shipping $60+</div>
+        <div class="modal-feat">No Fillers</div>
+        <div class="modal-feat">30-Day Returns</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-sidebar">
+    <div class="cart-header">
+      <h2 class="cart-title">CART</h2>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total</span>
+        <span class="cart-total-price" id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn">Checkout →</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

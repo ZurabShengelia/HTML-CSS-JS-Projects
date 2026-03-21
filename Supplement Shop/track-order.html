@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order — GEO Supplements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/x-icon" href="Images/icon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="icon" type="image/x-icon" href="Images/logo.png">
+<style>
+  .track-container { max-width: 700px; margin: 0 auto; padding: 0 20px; }
+  .search-box { 
+    background: var(--card); 
+    border: 1px solid var(--border); 
+    border-radius: 8px; 
+    padding: 24px; 
+    margin: 40px 0;
+    display: flex;
+    gap: 12px;
+  }
+  .search-box input { flex: 1; padding: 12px; background: var(--card2); border: 1px solid var(--border); border-radius: 4px; color: var(--text); }
+  .search-box button { padding: 12px 24px; background: var(--green); color: var(--bg); border: none; border-radius: 4px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+  .search-box button:hover { transform: translateY(-2px); box-shadow: var(--glow-green); }
+  .order-result { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 24px; margin: 20px 0; display: none; }
+  .order-result.show { display: block; }
+  .order-status { display: flex; justify-content: space-between; align-items: center; margin: 24px 0; }
+  .status-dot { 
+    width: 20px; 
+    height: 20px; 
+    border-radius: 50%; 
+    background: var(--border); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: var(--bg); 
+    font-size: 10px;
+    font-weight: bold;
+  }
+  .status-dot.active { background: var(--green); }
+  .status-line { flex: 1; height: 2px; background: var(--border); margin: 0 8px; }
+  .status-line.active { background: var(--green); }
+  .status-label { font-size: 12px; color: var(--text2); text-align: center; margin-top: 8px; }
+  .order-info { background: var(--card2); border-left: 3px solid var(--green); padding: 16px; border-radius: 4px; margin: 16px 0; }
+  .order-info-row { display: flex; justify-content: space-between; margin: 8px 0; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div id="loader">
+  <div class="loader-logo">GEO</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">GEO Supplements</a>
+  <div class="nav-links">
+    <a href="index.html"><i class="fa-solid fa-home"></i> Home</a>
+    <a href="index.html#categories"><i class="fa-solid fa-th"></i> Categories</a>
+    <a href="shop.html"><i class="fa-solid fa-bag-shopping"></i> Shop</a>
+    <a href="index.html#reviews"><i class="fa-solid fa-star"></i> Reviews</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button class="cart-btn" id="cartBtn">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Cart</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="index.html#categories" onclick="closeMobile()">Categories</a>
+  <a href="shop.html" onclick="closeMobile()">Shop</a>
+  <a href="index.html#reviews" onclick="closeMobile()">Reviews</a>
+</div>
+
+<section style="padding-top: 100px; padding-bottom: 60px;">
+  <div class="track-container reveal">
+    <div class="section-label">
+    <h2 class="section-title">TRACK <span style="color:var(--blue)">ORDER</span></h2>
+    <p class="section-sub" style="margin-bottom: 20px;">Enter your order number to track your shipment.</p>
+
+    <div class="search-box">
+      <input type="text" id="trackingInput" placeholder="Enter order number (e.g., APX-2024-123456)">
+      <button onclick="trackOrder()">Track</button>
+    </div>
+
+    <div class="order-result" id="orderResult">
+      <div style="margin-bottom: 24px;">
+        <h3 style="color: var(--text); margin-bottom: 8px;">Order #<span id="orderNumber"></span></h3>
+        <p style="color: var(--text2); font-size: 14px;">Placed on <span id="orderDate"></span></p>
+      </div>
+
+      <div class="order-status">
+        <div style="flex: 1;">
+          <div class="status-dot active">✓</div>
+          <div class="status-label">Order Confirmed</div>
+        </div>
+        <div class="status-line active"></div>
+        <div style="flex: 1;">
+          <div class="status-dot active">✓</div>
+          <div class="status-label">Processing</div>
+        </div>
+        <div class="status-line active"></div>
+        <div style="flex: 1;">
+          <div class="status-dot active">✓</div>
+          <div class="status-label">Shipped</div>
+        </div>
+        <div class="status-line"></div>
+        <div style="flex: 1;">
+          <div class="status-dot">4</div>
+          <div class="status-label">Delivering</div>
+        </div>
+      </div>
+
+      <div class="order-info">
+        <div class="order-info-row">
+          <span style="color: var(--text2);">Status</span>
+          <span style="color: var(--green); font-weight: 600;">In Transit</span>
+        </div>
+        <div class="order-info-row">
+          <span style="color: var(--text2);">Tracking Number</span>
+          <span style="color: var(--text);" id="trackingNum">1Z999AA10123456784</span>
+        </div>
+        <div class="order-info-row">
+          <span style="color: var(--text2);">Carrier</span>
+          <span style="color: var(--text);">FedEx</span>
+        </div>
+        <div class="order-info-row">
+          <span style="color: var(--text2);">Est. Delivery</span>
+          <span style="color: var(--green); font-weight: 600;">March 25, 2026</span>
+        </div>
+      </div>
+
+      <div class="order-info" style="border-left-color: var(--blue);">
+        <div class="order-info-row">
+          <span style="color: var(--text2);">Items</span>
+          <span style="color: var(--text);">3 products</span>
+        </div>
+        <div class="order-info-row">
+          <span style="color: var(--text2);">Total</span>
+          <span style="color: var(--text);">$149.97</span>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; padding: 16px; background: var(--card2); border-radius: 4px; border-left: 3px solid var(--blue);">
+        <p style="color: var(--text2); font-size: 13px; margin: 0;">📦 Your package is on its way! Track it using the FedEx carrier link for real-time updates.</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; text-align: center;">
+      <h3 style="color: var(--text); margin-bottom: 12px;">Need Help?</h3>
+      <p style="color: var(--text2); margin-bottom: 16px;">Can't find your order or need to make changes?</p>
+      <a href="contact.html" class="btn-primary">Contact Support →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">GEO Supplements</a>
+        <p>Premium performance supplements engineered for athletes who refuse to settle for average. Science-backed. Results-proven.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="shop.html">Protein</a></li>
+          <li><a href="shop.html">Gainer</a></li>
+          <li><a href="shop.html">Pre-Workout</a></li>
+          <li><a href="shop.html">Creatine</a></li>
+          <li><a href="shop.html">Vitamins</a></li>
+          <li><a href="shop.html">Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="lab-testing.html">Lab Testing</a></li>
+          <li><a href="athletes.html">Athletes</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="shipping.html">Shipping</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="track-order.html">Track Order</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GEO Supplements. All rights reserved. For demonstration only.</p>
+      <div class="footer-badges">
+        <div class="footer-badge">GMP Certified</div>
+        <div class="footer-badge">3rd Party Tested</div>
+        <div class="footer-badge">Georgia Made</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="productModal">
+  <div class="modal">
+    <div class="modal-img-side">
+      <img id="modalImg" src="" alt="">
+      <div class="modal-glow"></div>
+    </div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-cat" id="modalCat"></div>
+      <h2 class="modal-name" id="modalName"></h2>
+      <div class="modal-stars" id="modalStars"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-price-row">
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-price-old" id="modalOldPrice"></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" id="modalQtyMinus">−</button>
+        <input class="qty-num" id="modalQty" type="number" value="1" min="1" max="10" readonly>
+        <button class="qty-btn" id="modalQtyPlus">+</button>
+      </div>
+      <button class="modal-add-btn" id="modalAddBtn"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+      <div class="modal-features">
+        <div class="modal-feat">Lab Verified</div>
+        <div class="modal-feat">Free Shipping $60+</div>
+        <div class="modal-feat">No Fillers</div>
+        <div class="modal-feat">30-Day Returns</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-sidebar">
+    <div class="cart-header">
+      <h2 class="cart-title">CART</h2>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total</span>
+        <span class="cart-total-price" id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn">Checkout →</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+function trackOrder() {
+  const input = document.getElementById('trackingInput').value.trim();
+  if (!input) {
+    alert('Please enter an order number');
+    return;
+  }
+  
+  document.getElementById('orderNumber').textContent = input;
+  document.getElementById('orderDate').textContent = 'March 20, 2026';
+  document.getElementById('trackingNum').textContent = '1Z' + Math.random().toString().substr(2, 16).toUpperCase();
+  document.getElementById('orderResult').classList.add('show');
+  showToast('✓ Order Found', 'Your order is on its way!');
+}
+</script>
+</body>
+</html>

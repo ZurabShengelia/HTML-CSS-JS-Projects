@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite Athletes — GEO Supplements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="icon" type="image/x-icon" href="Images/logo.png">
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="loader"><div class="loader-logo">GEO</div><div class="loader-bar"><div class="loader-fill"></div></div></div>
+<div class="toast-container" id="toastContainer"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">GEO Supplements</a>
+  <div class="nav-links">
+    <a href="index.html"><i class="fa-solid fa-home"></i> Home</a>
+    <a href="index.html#categories"><i class="fa-solid fa-th"></i> Categories</a>
+    <a href="shop.html"><i class="fa-solid fa-bag-shopping"></i> Shop</a>
+    <a href="index.html#reviews"><i class="fa-solid fa-star"></i> Reviews</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button class="cart-btn" id="cartBtn"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span><span class="cart-count" id="cartCount">0</span></button>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="index.html#categories" onclick="closeMobile()">Categories</a>
+  <a href="shop.html" onclick="closeMobile()">Shop</a>
+  <a href="index.html#reviews" onclick="closeMobile()">Reviews</a>
+</div>
+
+<section class="page-hero-section" style="padding-left:48px;padding-right:48px;text-align:center">
+  <div class="breadcrumb reveal" style="justify-content:center">
+    <a href="index.html">Home</a><span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Athletes</span>
+  </div>
+  <div class="section-label reveal">// OUR COMMUNITY</div>
+  <h1 class="section-title reveal">ELITE <span style="color:var(--green)">ATHLETES</span></h1>
+  <p class="section-sub reveal" style="margin:0 auto 36px">Trusted by 50,000+ competitive athletes worldwide across every discipline.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" class="reveal">
+    <a href="shop.html" class="btn-primary btn-sm">Shop Performance Stacks →</a>
+    <a href="index.html#reviews" class="btn-outline btn-sm">Read Reviews</a>
+  </div>
+</section>
+
+<section style="background:var(--bg2);padding:80px 48px">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="stats-band reveal">
+      <div class="stats-band-item"><div class="stats-band-num">50K+</div><div class="stats-band-label">Athletes</div></div>
+      <div class="stats-band-item"><div class="stats-band-num">42+</div><div class="stats-band-label">Countries</div></div>
+      <div class="stats-band-item"><div class="stats-band-num">5</div><div class="stats-band-label">Sport Disciplines</div></div>
+      <div class="stats-band-item"><div class="stats-band-num">4.9★</div><div class="stats-band-label">Average Rating</div></div>
+    </div>
+    <div class="section-label reveal">// DISCIPLINES</div>
+    <h2 class="section-title reveal">WHO TRUSTS <span style="color:var(--blue)">GEO</span></h2>
+    <div class="info-grid reveal">
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-medal"></i></div>
+        <h4>Olympic Athletes</h4>
+        <p>Gold medalists in track & field, swimming, and weightlifting rely on GEO for clean, verified supplementation that meets the highest anti-doping standards.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <h4>CrossFit Champions</h4>
+        <p>Multi-time regional and national CrossFit competitors trust our comprehensive product line for endurance, strength, and recovery across grueling WODs.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-fist-raised"></i></div>
+        <h4>UFC & MMA Fighters</h4>
+        <p>Professional fighters and champions depend on GEO for peak performance, rapid recovery between camps, and supplements that survive the strictest drug testing.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-trophy"></i></div>
+        <h4>Bodybuilding Pros</h4>
+        <p>IFBB professionals and competition winners choose GEO for show prep, off-season bulk, and the kind of purity they can trust on stage.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-gamepad"></i></div>
+        <h4>Esports Professionals</h4>
+        <p>Sponsored esports teams use GEO cognitive support formulas for sustained focus, reaction time, and mental endurance through marathon sessions.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-person-running"></i></div>
+        <h4>Endurance Athletes</h4>
+        <p>Marathon runners, triathletes, and ultra-endurance competitors use our recovery and joint support range to train harder and bounce back faster.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px" class="reveal">
+      <a href="shop.html" class="btn-primary">Find Your Stack →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><a href="index.html" class="nav-logo">GEO Supplements</a><p>Premium performance supplements engineered for athletes who refuse to settle for average. Science-backed. Results-proven.</p></div>
+      <div class="footer-col"><h4>Products</h4><ul><li><a href="shop.html">Protein</a></li><li><a href="shop.html">Gainer</a></li><li><a href="shop.html">Pre-Workout</a></li><li><a href="shop.html">Creatine</a></li><li><a href="shop.html">Vitamins</a></li><li><a href="shop.html">Bundles</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="lab-testing.html">Lab Testing</a></li><li><a href="athletes.html">Athletes</a></li><li><a href="blog.html">Blog</a></li><li><a href="careers.html">Careers</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="faq.html">FAQ</a></li><li><a href="shipping.html">Shipping</a></li><li><a href="returns.html">Returns</a></li><li><a href="contact.html">Contact</a></li><li><a href="track-order.html">Track Order</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 GEO Supplements. All rights reserved. For demonstration only.</p><div class="footer-badges"><div class="footer-badge">GMP Certified</div><div class="footer-badge">3rd Party Tested</div><div class="footer-badge">Georgia Made</div></div></div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="productModal"><div class="modal"><div class="modal-img-side"><img id="modalImg" src="" alt=""><div class="modal-glow"></div></div><div class="modal-content"><button class="modal-close" id="modalClose">✕</button><div class="modal-cat" id="modalCat"></div><h2 class="modal-name" id="modalName"></h2><div class="modal-stars" id="modalStars"></div><p class="modal-desc" id="modalDesc"></p><div class="modal-price-row"><div class="modal-price" id="modalPrice"></div><div class="modal-price-old" id="modalOldPrice"></div></div><div class="qty-control"><button class="qty-btn" id="modalQtyMinus">−</button><input class="qty-num" id="modalQty" type="number" value="1" min="1" max="10" readonly><button class="qty-btn" id="modalQtyPlus">+</button></div><button class="modal-add-btn" id="modalAddBtn"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button><div class="modal-features"><div class="modal-feat">Lab Verified</div><div class="modal-feat">Free Shipping $60+</div><div class="modal-feat">No Fillers</div><div class="modal-feat">30-Day Returns</div></div></div></div></div>
+<div class="cart-overlay" id="cartOverlay"><div class="cart-sidebar"><div class="cart-header"><h2 class="cart-title">CART</h2><button class="cart-close" id="cartClose">✕</button></div><div class="cart-items" id="cartItems"></div><div class="cart-footer"><div class="cart-total-row"><span class="cart-total-label">Total</span><span class="cart-total-price" id="cartTotal">$0.00</span></div><button class="checkout-btn">Checkout →</button></div></div></div>
+<script src="script.js"></script>
+</body>
+</html>

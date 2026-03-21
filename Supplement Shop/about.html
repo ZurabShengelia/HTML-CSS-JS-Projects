@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — GEO Supplements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="icon" type="image/x-icon" href="Images/logo.png">
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="loader"><div class="loader-logo">GEO</div><div class="loader-bar"><div class="loader-fill"></div></div></div>
+<div class="toast-container" id="toastContainer"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">GEO Supplements</a>
+  <div class="nav-links">
+    <a href="index.html"><i class="fa-solid fa-home"></i> Home</a>
+    <a href="index.html#categories"><i class="fa-solid fa-th"></i> Categories</a>
+    <a href="shop.html"><i class="fa-solid fa-bag-shopping"></i> Shop</a>
+    <a href="index.html#reviews"><i class="fa-solid fa-star"></i> Reviews</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button class="cart-btn" id="cartBtn"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span><span class="cart-count" id="cartCount">0</span></button>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="index.html#categories" onclick="closeMobile()">Categories</a>
+  <a href="shop.html" onclick="closeMobile()">Shop</a>
+  <a href="index.html#reviews" onclick="closeMobile()">Reviews</a>
+</div>
+
+<section class="page-hero-section" style="padding-left:48px;padding-right:48px;text-align:center">
+  <div class="breadcrumb reveal" style="justify-content:center">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">About</span>
+  </div>
+  <div class="section-label reveal">// WHO WE ARE</div>
+  <h1 class="section-title reveal">GEO <span style="color:var(--green)">SUPPLEMENTS</span></h1>
+  <p class="section-sub reveal" style="margin:0 auto 36px">Founded on science, driven by athletes, built for performance.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap" class="reveal">
+    <a href="shop.html" class="btn-primary btn-sm">Shop Products →</a>
+    <a href="lab-testing.html" class="btn-outline btn-sm">Our Testing Process</a>
+  </div>
+</section>
+
+<section style="background:var(--bg2);padding:80px 48px">
+  <div style="max-width:900px;margin:0 auto">
+    <div class="stats-band reveal">
+      <div class="stats-band-item"><div class="stats-band-num">50K+</div><div class="stats-band-label">Athletes</div></div>
+      <div class="stats-band-item"><div class="stats-band-num">99.8%</div><div class="stats-band-label">Purity</div></div>
+      <div class="stats-band-item"><div class="stats-band-num">14</div><div class="stats-band-label">Products</div></div>
+      <div class="stats-band-item"><div class="stats-band-num">2020</div><div class="stats-band-label">Founded</div></div>
+    </div>
+    <div style="max-width:700px;margin:0 auto;text-align:center" class="reveal">
+      <p style="color:var(--text2);font-size:15px;line-height:1.9;margin-bottom:20px">GEO Supplements was founded with one mission: to eliminate guesswork from athletic nutrition. We believe every athlete deserves access to science-backed supplements with complete ingredient transparency — no proprietary blends, no fillers, no compromises.</p>
+      <p style="color:var(--text2);font-size:15px;line-height:1.9">From our state-of-the-art R&D lab to third-party verification, every product goes through a rigorous process before it reaches you. We started with a small team of sports scientists in 2020 and have grown into a trusted partner for over 50,000 athletes worldwide.</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--bg);padding:80px 48px">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-label reveal">// OUR PILLARS</div>
+    <h2 class="section-title reveal">WHAT WE <span style="color:var(--blue)">STAND FOR</span></h2>
+    <div class="info-grid reveal">
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-flask"></i></div>
+        <h4>Science First</h4>
+        <p>Every formula is built on peer-reviewed research. We don't add ingredients because they sound good — we add them because they work.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-eye"></i></div>
+        <h4>Full Transparency</h4>
+        <p>No proprietary blends. Every label shows exact dosages so you know precisely what you're putting in your body.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h4>Rigorous Testing</h4>
+        <p>Every batch is tested by independent third-party labs before it ships. We maintain GMP certification at every facility.</p>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-users"></i></div>
+        <h4>Community Driven</h4>
+        <p>Our products are shaped by real athlete feedback. We listen, iterate, and keep improving to meet the demands of serious competitors.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px" class="reveal">
+      <a href="shop.html" class="btn-primary">Explore All Products →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">GEO Supplements</a>
+        <p>Premium performance supplements engineered for athletes who refuse to settle for average. Science-backed. Results-proven.</p>
+      </div>
+      <div class="footer-col"><h4>Products</h4><ul><li><a href="shop.html">Protein</a></li><li><a href="shop.html">Gainer</a></li><li><a href="shop.html">Pre-Workout</a></li><li><a href="shop.html">Creatine</a></li><li><a href="shop.html">Vitamins</a></li><li><a href="shop.html">Bundles</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="lab-testing.html">Lab Testing</a></li><li><a href="athletes.html">Athletes</a></li><li><a href="blog.html">Blog</a></li><li><a href="careers.html">Careers</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="faq.html">FAQ</a></li><li><a href="shipping.html">Shipping</a></li><li><a href="returns.html">Returns</a></li><li><a href="contact.html">Contact</a></li><li><a href="track-order.html">Track Order</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GEO Supplements. All rights reserved. For demonstration only.</p>
+      <div class="footer-badges"><div class="footer-badge">GMP Certified</div><div class="footer-badge">3rd Party Tested</div><div class="footer-badge">Georgia Made</div></div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="productModal"><div class="modal"><div class="modal-img-side"><img id="modalImg" src="" alt=""><div class="modal-glow"></div></div><div class="modal-content"><button class="modal-close" id="modalClose">✕</button><div class="modal-cat" id="modalCat"></div><h2 class="modal-name" id="modalName"></h2><div class="modal-stars" id="modalStars"></div><p class="modal-desc" id="modalDesc"></p><div class="modal-price-row"><div class="modal-price" id="modalPrice"></div><div class="modal-price-old" id="modalOldPrice"></div></div><div class="qty-control"><button class="qty-btn" id="modalQtyMinus">−</button><input class="qty-num" id="modalQty" type="number" value="1" min="1" max="10" readonly><button class="qty-btn" id="modalQtyPlus">+</button></div><button class="modal-add-btn" id="modalAddBtn"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button><div class="modal-features"><div class="modal-feat">Lab Verified</div><div class="modal-feat">Free Shipping $60+</div><div class="modal-feat">No Fillers</div><div class="modal-feat">30-Day Returns</div></div></div></div></div>
+<div class="cart-overlay" id="cartOverlay"><div class="cart-sidebar"><div class="cart-header"><h2 class="cart-title">CART</h2><button class="cart-close" id="cartClose">✕</button></div><div class="cart-items" id="cartItems"></div><div class="cart-footer"><div class="cart-total-row"><span class="cart-total-label">Total</span><span class="cart-total-price" id="cartTotal">$0.00</span></div><button class="checkout-btn">Checkout →</button></div></div></div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — GEO Supplements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="icon" type="image/x-icon" href="Images/logo.png">
+<style>
+  .contact-container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 40px 0; }
+  @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact-info { }
+  .contact-item { margin-bottom: 32px; }
+  .contact-item h3 { color: var(--green); margin-bottom: 8px; font-size: 16px; }
+  .contact-item p { color: var(--text2); line-height: 1.6; }
+  .contact-item a { color: var(--green); text-decoration: none; transition: 0.3s; }
+  .contact-item a:hover { text-decoration: underline; }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; color: var(--text); margin-bottom: 8px; font-size: 14px; font-weight: 600; }
+  .form-group input, .form-group textarea { 
+    width: 100%; 
+    padding: 12px; 
+    background: var(--card); 
+    border: 1px solid var(--border); 
+    border-radius: 4px; 
+    color: var(--text); 
+    font-family: inherit;
+    transition: all 0.3s;
+  }
+  .form-group input:focus, .form-group textarea:focus { 
+    outline: none; 
+    border-color: var(--green); 
+    box-shadow: var(--glow-green);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .form-submit { background: var(--green); color: var(--bg); border: none; padding: 14px 28px; border-radius: 4px; cursor: pointer; font-weight: 600; transition: 0.3s; }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: var(--glow-green); }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div id="loader">
+  <div class="loader-logo">GEO</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">GEO Supplements</a>
+  <div class="nav-links">
+    <a href="index.html"><i class="fa-solid fa-home"></i> Home</a>
+    <a href="index.html#categories"><i class="fa-solid fa-th"></i> Categories</a>
+    <a href="shop.html"><i class="fa-solid fa-bag-shopping"></i> Shop</a>
+    <a href="index.html#reviews"><i class="fa-solid fa-star"></i> Reviews</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button class="cart-btn" id="cartBtn">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Cart</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="index.html#categories" onclick="closeMobile()">Categories</a>
+  <a href="shop.html" onclick="closeMobile()">Shop</a>
+  <a href="index.html#reviews" onclick="closeMobile()">Reviews</a>
+</div>
+
+<section style="padding-top: 100px; padding-bottom: 60px;">
+  <div class="contact-container reveal">
+    <div class="section-label">// SUPPORT</div>
+    <h2 class="section-title">GET IN <span style="color:var(--green)">TOUCH</span></h2>
+    <p class="section-sub" style="margin-bottom: 40px;">Have a question? We're here to help. Contact us anytime.</p>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <h3><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> Email</h3>
+          <p><a href="mailto:support@geosupplements.com">support@geosupplements.com</a></p>
+          <p style="font-size: 13px; color: var(--text3);">We respond within 24 hours</p>
+        </div>
+
+        <div class="contact-item">
+          <h3><i class="fa-solid fa-phone" style="margin-right: 8px;"></i> Phone</h3>
+          <p><a href="tel:+18005551234">+995-555-55-55-55</a></p>
+          <p style="font-size: 13px; color: var(--text3);">Mon-Fri, 9am-6pm </p>
+        </div>
+
+        <div class="contact-item">
+          <h3><i class="fa-solid fa-location-dot" style="margin-right: 8px;"></i> Address</h3>
+          <p>GEO Supplements<br/>123 Performance Drive<br/>Kutaisi, Postal Code:4900<br/>Georgia</p>
+        </div>
+
+        <div class="contact-item">
+          <h3><i class="fa-solid fa-comments" style="margin-right: 8px;"></i> Live Chat</h3>
+          <p>Available Monday-Friday, 10am-5pm </p>
+        </div>
+      </div>
+
+      <div>
+        <form onsubmit="handleContactForm(event)">
+          <div class="form-group">
+            <label>Name *</label>
+            <input type="text" required placeholder="Your name">
+          </div>
+
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" required placeholder="your@email.com">
+          </div>
+
+          <div class="form-group">
+            <label>Subject *</label>
+            <select style="width: 100%; padding: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 4px; color: var(--text); cursor: pointer;" required>
+              <option value="">Select a subject</option>
+              <option value="general">General Inquiry</option>
+              <option value="order">Order Question</option>
+              <option value="product">Product Question</option>
+              <option value="refund">Refund Request</option>
+              <option value="partnership">Partnership</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Message *</label>
+            <textarea required placeholder="Tell us how we can help..."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Send Message →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">GEO Supplements</a>
+        <p>Premium performance supplements engineered for athletes who refuse to settle for average. Science-backed. Results-proven.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="shop.html">Protein</a></li>
+          <li><a href="shop.html">Gainer</a></li>
+          <li><a href="shop.html">Pre-Workout</a></li>
+          <li><a href="shop.html">Creatine</a></li>
+          <li><a href="shop.html">Vitamins</a></li>
+          <li><a href="shop.html">Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="lab-testing.html">Lab Testing</a></li>
+          <li><a href="athletes.html">Athletes</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="shipping.html">Shipping</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="track-order.html">Track Order</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GEO Supplements. All rights reserved. For demonstration only.</p>
+      <div class="footer-badges">
+        <div class="footer-badge">GMP Certified</div>
+        <div class="footer-badge">3rd Party Tested</div>
+        <div class="footer-badge">Georgia Made</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="productModal">
+  <div class="modal">
+    <div class="modal-img-side">
+      <img id="modalImg" src="" alt="">
+      <div class="modal-glow"></div>
+    </div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-cat" id="modalCat"></div>
+      <h2 class="modal-name" id="modalName"></h2>
+      <div class="modal-stars" id="modalStars"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-price-row">
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-price-old" id="modalOldPrice"></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" id="modalQtyMinus">−</button>
+        <input class="qty-num" id="modalQty" type="number" value="1" min="1" max="10" readonly>
+        <button class="qty-btn" id="modalQtyPlus">+</button>
+      </div>
+      <button class="modal-add-btn" id="modalAddBtn"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+      <div class="modal-features">
+        <div class="modal-feat">Lab Verified</div>
+        <div class="modal-feat">Free Shipping $60+</div>
+        <div class="modal-feat">No Fillers</div>
+        <div class="modal-feat">30-Day Returns</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-sidebar">
+    <div class="cart-header">
+      <h2 class="cart-title">CART</h2>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total</span>
+        <span class="cart-total-price" id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn">Checkout →</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+function handleContactForm(e) {
+  e.preventDefault();
+  showToast('✅ Support', 'Message sent! We\'ll get back to you soon.');
+  e.target.reset();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — GEO Supplements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="icon" type="image/x-icon" href="Images/logo.png">
+<style>
+  .faq-container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+  .faq-item { 
+    background: var(--card); 
+    border: 1px solid var(--border); 
+    border-radius: 8px; 
+    margin-bottom: 16px; 
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .faq-item.open { border-color: var(--green); box-shadow: var(--glow-green); }
+  .faq-question {
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    transition: background 0.3s ease;
+  }
+  .faq-question:hover { background: var(--card2); }
+  .faq-question h3 { margin: 0; color: var(--text); font-size: 16px; }
+  .faq-toggle { color: var(--green); font-size: 20px; transition: transform 0.3s ease; }
+  .faq-item.open .faq-toggle { transform: rotate(180deg); }
+  .faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    color: var(--text2);
+    line-height: 1.6;
+  }
+  .faq-item.open .faq-answer { padding: 0 20px 20px 20px; max-height: 500px; }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div id="loader">
+  <div class="loader-logo">GEO</div>
+  <div class="loader-bar"><div class="loader-fill"></div></div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">GEO Supplements</a>
+  <div class="nav-links">
+    <a href="index.html"><i class="fa-solid fa-home"></i> Home</a>
+    <a href="index.html#categories"><i class="fa-solid fa-th"></i> Categories</a>
+    <a href="shop.html"><i class="fa-solid fa-bag-shopping"></i> Shop</a>
+    <a href="index.html#reviews"><i class="fa-solid fa-star"></i> Reviews</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button class="cart-btn" id="cartBtn">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span>Cart</span>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="index.html#categories" onclick="closeMobile()">Categories</a>
+  <a href="shop.html" onclick="closeMobile()">Shop</a>
+  <a href="index.html#reviews" onclick="closeMobile()">Reviews</a>
+</div>
+
+<section style="padding-top: 100px; padding-bottom: 60px;">
+  <div class="faq-container reveal">
+    <div class="section-label">// SUPPORT</div>
+    <h2 class="section-title">FREQUENTLY <span style="color:var(--green)">ASKED</span></h2>
+    <p class="section-sub" style="margin-bottom: 40px;">Can't find what you're looking for? Check our FAQ or <a href="contact.html" style="color: var(--green);">contact us</a>.</p>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">
+        <h3>How long does shipping take?</h3>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        Standard shipping takes 5-7 business days. Express shipping (2-3 days) and overnight shipping are available. Orders are processed within 24 hours. See our <a href="shipping.html" style="color: var(--green);">shipping page</a> for full details.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">
+        <h3>Are your products tested for quality?</h3>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        Yes! Every batch is tested by independent third-party laboratories for purity, potency, and contamination. We maintain GMP certification and provide certificates of analysis for all products. Check our <a href="lab-testing.html" style="color: var(--green);">lab testing page</a> for details.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">
+        <h3>What is your return policy?</h3>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        We offer a 30-day money-back guarantee. If you're not satisfied with your purchase, return it within 30 days for a full refund — no questions asked. See our <a href="returns.html" style="color: var(--green);">returns policy</a> for more information.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">
+        <h3>Do you ship internationally?</h3>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        Currently, we ship within the USA only. International shipping is coming soon. Contact our support team if you have special requests.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">
+        <h3>Can I use multiple discount codes?</h3>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        Only one discount code can be applied per order. If you have a question about a specific promotion, our support team can help you find the best deal.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">
+        <h3>Are there any banned substances in your products?</h3>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        No. All our products are free from banned substances and are safe for competitive athletes. We follow WADA and NSF guidelines to ensure compliance with sports organizations.
+      </div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-question">
+        <h3>How should I store my supplements?</h3>
+        <span class="faq-toggle">▼</span>
+      </div>
+      <div class="faq-answer">
+        Store supplements in a cool, dry place away from direct sunlight. Keep containers tightly sealed. Most supplements have a 2-year shelf life if stored properly. Check individual product labels for specific storage instructions.
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center;">
+      <p style="color: var(--text2); margin-bottom: 20px;">Still have questions?</p>
+      <a href="contact.html" class="btn-primary">Contact Support →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">GEO Supplements</a>
+        <p>Premium performance supplements engineered for athletes who refuse to settle for average. Science-backed. Results-proven.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="shop.html">Protein</a></li>
+          <li><a href="shop.html">Gainer</a></li>
+          <li><a href="shop.html">Pre-Workout</a></li>
+          <li><a href="shop.html">Creatine</a></li>
+          <li><a href="shop.html">Vitamins</a></li>
+          <li><a href="shop.html">Bundles</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="lab-testing.html">Lab Testing</a></li>
+          <li><a href="athletes.html">Athletes</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="careers.html">Careers</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="shipping.html">Shipping</a></li>
+          <li><a href="returns.html">Returns</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="track-order.html">Track Order</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GEO Supplements. All rights reserved. For demonstration only.</p>
+      <div class="footer-badges">
+        <div class="footer-badge">GMP Certified</div>
+        <div class="footer-badge">3rd Party Tested</div>
+        <div class="footer-badge">Georgia Made</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="productModal">
+  <div class="modal">
+    <div class="modal-img-side">
+      <img id="modalImg" src="" alt="">
+      <div class="modal-glow"></div>
+    </div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">✕</button>
+      <div class="modal-cat" id="modalCat"></div>
+      <h2 class="modal-name" id="modalName"></h2>
+      <div class="modal-stars" id="modalStars"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <div class="modal-price-row">
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-price-old" id="modalOldPrice"></div>
+      </div>
+      <div class="qty-control">
+        <button class="qty-btn" id="modalQtyMinus">−</button>
+        <input class="qty-num" id="modalQty" type="number" value="1" min="1" max="10" readonly>
+        <button class="qty-btn" id="modalQtyPlus">+</button>
+      </div>
+      <button class="modal-add-btn" id="modalAddBtn"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+      <div class="modal-features">
+        <div class="modal-feat">Lab Verified</div>
+        <div class="modal-feat">Free Shipping $60+</div>
+        <div class="modal-feat">No Fillers</div>
+        <div class="modal-feat">30-Day Returns</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cart-overlay" id="cartOverlay">
+  <div class="cart-sidebar">
+    <div class="cart-header">
+      <h2 class="cart-title">CART</h2>
+      <button class="cart-close" id="cartClose">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total</span>
+        <span class="cart-total-price" id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn">Checkout →</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+function toggleFaq(el) {
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>

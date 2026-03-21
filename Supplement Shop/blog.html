@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — GEO Supplements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="icon" type="image/x-icon" href="Images/logo.png">
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div id="loader"><div class="loader-logo">GEO</div><div class="loader-bar"><div class="loader-fill"></div></div></div>
+<div class="toast-container" id="toastContainer"></div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">GEO Supplements</a>
+  <div class="nav-links">
+    <a href="index.html"><i class="fa-solid fa-home"></i> Home</a>
+    <a href="index.html#categories"><i class="fa-solid fa-th"></i> Categories</a>
+    <a href="shop.html"><i class="fa-solid fa-bag-shopping"></i> Shop</a>
+    <a href="index.html#reviews"><i class="fa-solid fa-star"></i> Reviews</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:16px">
+    <button class="cart-btn" id="cartBtn"><i class="fa-solid fa-cart-shopping"></i><span>Cart</span><span class="cart-count" id="cartCount">0</span></button>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobile()">Home</a>
+  <a href="index.html#categories" onclick="closeMobile()">Categories</a>
+  <a href="shop.html" onclick="closeMobile()">Shop</a>
+  <a href="index.html#reviews" onclick="closeMobile()">Reviews</a>
+</div>
+
+<section class="page-hero-section" style="padding-left:48px;padding-right:48px;text-align:center">
+  <div class="breadcrumb reveal" style="justify-content:center">
+    <a href="index.html">Home</a><span class="breadcrumb-sep">/</span>
+    <span class="breadcrumb-current">Blog</span>
+  </div>
+  <div class="section-label reveal">// PERFORMANCE INSIGHTS</div>
+  <h1 class="section-title reveal">THE <span style="color:var(--blue)">BLOG</span></h1>
+  <p class="section-sub reveal" style="margin:0 auto">Expert articles on nutrition, training, and athletic performance.</p>
+</section>
+
+<section style="background:var(--bg2);padding:80px 48px">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="section-label reveal">// FEATURED ARTICLES</div>
+    <h2 class="section-title reveal">LATEST <span style="color:var(--green)">READS</span></h2>
+    <div class="info-grid reveal">
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-dumbbell"></i></div>
+        <h4>The Complete Guide to Protein Supplementation</h4>
+        <p>When to take protein, how much you need, and which types work best for your specific training goals. Science-backed protocols for maximum results.</p>
+        <a href="#" class="card-link" onclick="event.preventDefault();openArticleModal(1)">Read Article →</a>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-fire"></i></div>
+        <h4>Pre-Workout Timing: Maximize Your Performance</h4>
+        <p>Science-backed timing strategies for optimal energy and focus during training. Find the ideal pre-workout window for your specific training style.</p>
+        <a href="#" class="card-link" onclick="event.preventDefault();openArticleModal(2)">Read Article →</a>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-moon"></i></div>
+        <h4>Recovery Nutrition: Build Muscle While You Sleep</h4>
+        <p>How proper post-workout and pre-sleep nutrition dramatically accelerates muscle growth, repair, and recovery between sessions.</p>
+        <a href="#" class="card-link" onclick="event.preventDefault();openArticleModal(3)">Read Article →</a>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-brain"></i></div>
+        <h4>Adaptogens for Athletes: The Science of Stress</h4>
+        <p>How Ashwagandha, Shilajit, and other adaptogens can lower cortisol, improve testosterone, and make you a more resilient competitor.</p>
+        <a href="#" class="card-link" onclick="event.preventDefault();openArticleModal(4)">Read Article →</a>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-bolt"></i></div>
+        <h4>Creatine: Everything You Need to Know in 2026</h4>
+        <p>The most researched supplement in sports science, decoded. Loading phases, maintenance doses, timing, and what the latest studies actually show.</p>
+        <a href="#" class="card-link" onclick="event.preventDefault();openArticleModal(5)">Read Article →</a>
+      </div>
+      <div class="info-card">
+        <div class="info-card-icon"><i class="fa-solid fa-sun"></i></div>
+        <h4>Vitamin D3 & K2: The Athlete's Unsung Heroes</h4>
+        <p>Why nearly every athlete is deficient, and what optimal levels actually look like for performance, testosterone, and immune resilience.</p>
+        <a href="#" class="card-link" onclick="event.preventDefault();openArticleModal(6)">Read Article →</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px" class="reveal">
+      <a href="shop.html" class="btn-primary">Shop Products Featured in Our Research →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand"><a href="index.html" class="nav-logo">GEO Supplements</a><p>Premium performance supplements engineered for athletes who refuse to settle for average. Science-backed. Results-proven.</p></div>
+      <div class="footer-col"><h4>Products</h4><ul><li><a href="shop.html">Protein</a></li><li><a href="shop.html">Gainer</a></li><li><a href="shop.html">Pre-Workout</a></li><li><a href="shop.html">Creatine</a></li><li><a href="shop.html">Vitamins</a></li><li><a href="shop.html">Bundles</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="about.html">About</a></li><li><a href="lab-testing.html">Lab Testing</a></li><li><a href="athletes.html">Athletes</a></li><li><a href="blog.html">Blog</a></li><li><a href="careers.html">Careers</a></li></ul></div>
+      <div class="footer-col"><h4>Support</h4><ul><li><a href="faq.html">FAQ</a></li><li><a href="shipping.html">Shipping</a></li><li><a href="returns.html">Returns</a></li><li><a href="contact.html">Contact</a></li><li><a href="track-order.html">Track Order</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 GEO Supplements. All rights reserved. For demonstration only.</p><div class="footer-badges"><div class="footer-badge">GMP Certified</div><div class="footer-badge">3rd Party Tested</div><div class="footer-badge">Georgia Made</div></div></div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="productModal"><div class="modal"><div class="modal-img-side"><img id="modalImg" src="" alt=""><div class="modal-glow"></div></div><div class="modal-content"><button class="modal-close" id="modalClose">✕</button><div class="modal-cat" id="modalCat"></div><h2 class="modal-name" id="modalName"></h2><div class="modal-stars" id="modalStars"></div><p class="modal-desc" id="modalDesc"></p><div class="modal-price-row"><div class="modal-price" id="modalPrice"></div><div class="modal-price-old" id="modalOldPrice"></div></div><div class="qty-control"><button class="qty-btn" id="modalQtyMinus">−</button><input class="qty-num" id="modalQty" type="number" value="1" min="1" max="10" readonly><button class="qty-btn" id="modalQtyPlus">+</button></div><button class="modal-add-btn" id="modalAddBtn"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button><div class="modal-features"><div class="modal-feat">Lab Verified</div><div class="modal-feat">Free Shipping $60+</div><div class="modal-feat">No Fillers</div><div class="modal-feat">30-Day Returns</div></div></div></div></div>
+<div class="article-modal-overlay" id="articleModal"><div class="article-modal"><button class="modal-close" id="articleModalClose">✕</button><div class="article-modal-header"><div class="article-icon" id="articleIcon"></div><div class="article-meta"><div class="article-category" id="articleCategory"></div><div class="article-read-time" id="articleReadTime"></div></div></div><h2 class="article-title" id="articleTitle"></h2><div class="article-content" id="articleContent"></div><div class="article-footer"><button class="btn-primary" onclick="closeArticleModal()">Close Article ✕</button></div></div></div>
+<div class="cart-overlay" id="cartOverlay"><div class="cart-sidebar"><div class="cart-header"><h2 class="cart-title">CART</h2><button class="cart-close" id="cartClose">✕</button></div><div class="cart-items" id="cartItems"></div><div class="cart-footer"><div class="cart-total-row"><span class="cart-total-label">Total</span><span class="cart-total-price" id="cartTotal">$0.00</span></div><button class="checkout-btn">Checkout →</button></div></div></div>
+<script src="script.js"></script>
+</body>
+</html>
