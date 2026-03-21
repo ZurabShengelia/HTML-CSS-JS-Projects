@@ -14,7 +14,7 @@ const products = [
   { id:10, name:"GEO D3+K2 Complex", category:"Vitamin D3+K2", price:24.99, oldPrice:null, badge:null, badgeColor:"", rating:5, reviews:167, image:"Images/D3K2.png", description:"The ultimate combination for bone health, immune function, and testosterone optimization. 5000 IU Vitamin D3 paired with 100mcg Vitamin K2 (MK-7) to ensure calcium goes where it belongs." },
   { id:11, name:"GEO Zinc Bisglycinate", category:"Zinc", price:19.99, oldPrice:null, badge:null, badgeColor:"", rating:4, reviews:112, image:"Images/Zinc.png", description:"Highly bioavailable zinc bisglycinate form — 50mg elemental zinc per serving. Essential for testosterone production, immune defense, and protein synthesis. Gentle on the stomach." },
   { id:12, name:"GEO Ashwagandha KSM-66", category:"Ashwagandha", price:27.99, oldPrice:34.99, badge:"BESTSELLER", badgeColor:"", rating:5, reviews:389, image:"Images/Ashwagandha_KSM-66.png", description:"Premium KSM-66 Ashwagandha root extract — the world's most studied ashwagandha. 600mg per serving. Clinically proven to reduce cortisol, improve testosterone levels, and enhance recovery." },
-  { id:13, name:"GEO Ashwagandha + Shilajit", category:"Ashwagandha", price:39.99, oldPrice:null, badge:"NEW", badgeColor:"blue", rating:4, reviews:67, image:"Images/Ashwagandha_KSM-66.png", description:"Advanced adaptogenic stack combining 600mg KSM-66 ashwagandha with purified Himalayan shilajit. The ultimate stress-resilience and vitality formula for peak performers." },
+  { id:13, name:"GEO Ashwagandha + Shilajit", category:"Ashwagandha", price:39.99, oldPrice:null, badge:"NEW", badgeColor:"blue", rating:4, reviews:67, image:"Images/GEO_Ashwagandha Shilajit.png", description:"Advanced adaptogenic stack combining 600mg KSM-66 ashwagandha with purified Himalayan shilajit. The ultimate stress-resilience and vitality formula for peak performers." },
   { id:14, name:"GEO Magnesium Glycinate", category:"Magnesium", price:26.99, oldPrice:null, badge:null, badgeColor:"", rating:5, reviews:276, image:"Images/Magnesium_Glycinate.png", description:"400mg magnesium glycinate — the most absorbable form for relaxation, sleep quality, and muscle recovery. Essential mineral depleted by intense training. No laxative effect unlike magnesium oxide." },
   { id:15, name:"GEO Magnesium Malate", category:"Magnesium", price:28.99, oldPrice:null, badge:null, badgeColor:"", rating:4, reviews:134, image:"Images/Magnesium_Malate.png", description:"Magnesium malate — the energizing form of magnesium. 400mg per serving. Bound to malic acid for superior absorption and energy metabolism support. Ideal for daytime use." },
 ];
@@ -44,6 +44,7 @@ let currentFilter = 'All';
 let searchQuery = '';
 let modalProductId = null;
 let modalQtyVal = 1;
+let modalBasePrice = 0;
 
 
 function $(id) { return document.getElementById(id); }
@@ -188,11 +189,17 @@ function renderStars(rating, wrapClass = 'stars') {
 }
 
 
+function updateModalPrice() {
+  const totalPrice = (modalBasePrice * modalQtyVal).toFixed(2);
+  $('modalPrice').textContent = '$' + totalPrice;
+}
+
 function openProductModal(productId) {
   const p = products.find(x => x.id === productId);
   if (!p) return;
   modalProductId = productId;
   modalQtyVal = 1;
+  modalBasePrice = p.price;
   const modalEl = $('productModal');
   if (!modalEl) return;
   $('modalQty').value = 1;
@@ -201,7 +208,7 @@ function openProductModal(productId) {
   $('modalCat').textContent = p.category;
   $('modalName').textContent = p.name;
   $('modalDesc').textContent = p.description;
-  $('modalPrice').textContent = '$' + p.price.toFixed(2);
+  updateModalPrice();
   $('modalOldPrice').textContent = p.oldPrice ? '$' + p.oldPrice.toFixed(2) : '';
   $('modalStars').innerHTML = renderStars(p.rating) + `<span style="font-size:11px;color:var(--text3);font-family:var(--font-mono)">(${p.reviews} reviews)</span>`;
   modalEl.classList.add('open');
@@ -510,11 +517,13 @@ function initModal() {
     modalQtyVal = Math.max(1, modalQtyVal - 1);
     const qtyEl = $('modalQty');
     if (qtyEl) qtyEl.value = modalQtyVal;
+    updateModalPrice();
   });
   if (plusBtn) plusBtn.addEventListener('click', () => {
     modalQtyVal = Math.min(10, modalQtyVal + 1);
     const qtyEl = $('modalQty');
     if (qtyEl) qtyEl.value = modalQtyVal;
+    updateModalPrice();
   });
   if (addBtn) addBtn.addEventListener('click', () => {
     if (modalProductId) { addToCart(modalProductId, modalQtyVal); closeProductModal(); }
