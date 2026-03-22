@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="ink">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TypeFast — Typing Speed Test</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="vignette"></div>
+<div id="caps-warning">⇪ CAPS LOCK ON</div>
+<div id="caret-el"></div>
+<div id="confetti-container"></div>
+
+<div id="screen-home" class="screen active">
+  <div class="home-noise"></div>
+  <header class="home-header">
+    <div class="torn-rule"></div>
+    <span class="header-tag">VOL. 1 — ISSUE 4</span>
+    <span class="header-tag" id="header-date"></span>
+    <div class="torn-rule"></div>
+  </header>
+  <div class="home-content">
+    <div class="eyebrow">THE DEFINITIVE</div>
+    <div class="app-title">TYPE<span>FAST</span></div>
+    <div class="app-subtitle">TYPING SPEED TEST</div>
+    <div class="title-rule"></div>
+    <div class="best-score" id="best-score-display"></div>
+    <div id="leaderboard-section" class="leaderboard-section"></div>
+    <div class="modes-row">
+      <div class="mode-section">
+        <div class="mode-label">— Time —</div>
+        <div class="mode-group" id="time-modes">
+          <div class="mode-chip active" data-time="15">15s</div>
+          <div class="mode-chip" data-time="30">30s</div>
+          <div class="mode-chip" data-time="60">60s</div>
+        </div>
+      </div>
+      <div class="mode-section">
+        <div class="mode-label">— Words —</div>
+        <div class="mode-group" id="word-modes">
+          <div class="mode-chip active" data-words="25">25</div>
+          <div class="mode-chip" data-words="50">50</div>
+          <div class="mode-chip" data-words="100">100</div>
+        </div>
+      </div>
+      <div class="mode-section">
+        <div class="mode-label">— Mode —</div>
+        <div class="mode-group" id="content-modes">
+          <div class="mode-chip active" data-content="words">words</div>
+          <div class="mode-chip" data-content="punct">+punct</div>
+          <div class="mode-chip" data-content="nums">+nums</div>
+        </div>
+      </div>
+    </div>
+    <div class="start-row">
+      <button id="btn-start">BEGIN TEST</button>
+      <button id="btn-sound" title="Toggle sound"><span id="sound-icon">♪</span></button>
+      <button id="btn-theme" title="Switch theme"><span id="theme-label">INK</span></button>
+    </div>
+  </div>
+  <footer class="home-footer">
+    <div class="torn-rule"></div>
+    <span class="footer-text">PRESS TAB TO RESTART AT ANY TIME DURING TEST</span>
+    <div class="torn-rule"></div>
+  </footer>
+</div>
+
+<div id="screen-test" class="screen">
+  <div class="test-masthead">
+    <span class="masthead-brand">TypeFast</span>
+    <div class="stats-bar" id="stats-bar">
+      <div class="stat-cell">
+        <div class="stat-label">WPM</div>
+        <div class="stat-value-wrap">
+          <span class="stat-value" id="live-wpm">0</span>
+          <canvas id="sparkline" width="80" height="30"></canvas>
+        </div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">ACC</div>
+        <div class="stat-value" id="live-acc">100%</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">TIME</div>
+        <div class="stat-value" id="live-time">—</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-label">STREAK</div>
+        <div class="stat-value" id="live-streak">0</div>
+      </div>
+    </div>
+    <span class="masthead-clock" id="masthead-clock"></span>
+  </div>
+  <div class="timer-bar-wrap"><div class="timer-bar" id="timer-bar"></div></div>
+  <div id="restart-guard" class="restart-guard">Press Tab again to confirm restart</div>
+  <div class="words-viewport">
+    <div class="words-container" id="words-container"></div>
+  </div>
+  <canvas id="rhythm-canvas" width="820" height="36"></canvas>
+  <div class="test-hint">tab — restart &nbsp;·&nbsp; space — next word</div>
+  <div class="pace-indicator" id="pace-indicator"></div>
+</div>
+
+<div id="screen-results" class="screen">
+  <div class="results-inner">
+    <div class="results-masthead">
+      <div class="torn-rule"></div>
+      <div class="results-header">— TEST COMPLETE —</div>
+      <div class="torn-rule"></div>
+    </div>
+    <div class="results-top">
+      <div class="wpm-card stagger-in" style="animation-delay:0.05s">
+        <div class="wpm-eyebrow">NET WORDS PER MINUTE</div>
+        <div class="wpm-big" id="res-wpm" data-value="0">0</div>
+        <div class="wpm-rule"></div>
+        <div class="wpm-sub-row">
+          <span class="wpm-sub" id="res-mode-tag"></span>
+          <span class="wpm-raw-wrap">Raw: <span id="res-raw-wpm">0</span> WPM <span class="wpm-tooltip-wrap">?<span class="wpm-tooltip">Net WPM subtracts errors per minute from raw. Raw = all keystrokes ÷ 5 ÷ minutes elapsed.</span></span></span>
+        </div>
+      </div>
+      <div class="acc-card stagger-in" style="animation-delay:0.15s">
+        <div class="acc-label-top">ACCURACY</div>
+        <div class="acc-ring-wrap">
+          <svg width="120" height="120" viewBox="0 0 120 120">
+            <circle class="acc-ring-bg" cx="60" cy="60" r="54"/>
+            <circle class="acc-ring-fg" id="acc-ring" cx="60" cy="60" r="54"/>
+          </svg>
+          <div class="acc-center">
+            <div class="acc-num" id="res-acc-num">0</div>
+            <div class="acc-pct">%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="mini-stat stagger-in" style="animation-delay:0.25s">
+        <div class="mini-stat-val" id="res-keystrokes">0</div>
+        <div class="mini-stat-label">Keystrokes</div>
+      </div>
+      <div class="mini-stat stagger-in" style="animation-delay:0.3s">
+        <div class="mini-stat-val" id="res-correct">0</div>
+        <div class="mini-stat-label">Correct</div>
+      </div>
+      <div class="mini-stat stagger-in" style="animation-delay:0.35s">
+        <div class="mini-stat-val" id="res-incorrect">0</div>
+        <div class="mini-stat-label">Incorrect</div>
+      </div>
+      <div class="mini-stat stagger-in" style="animation-delay:0.4s">
+        <div class="mini-stat-val" id="res-time">0s</div>
+        <div class="mini-stat-label">Elapsed</div>
+      </div>
+      <div class="mini-stat stagger-in" style="animation-delay:0.45s">
+        <div class="mini-stat-val" id="res-consistency">—</div>
+        <div class="mini-stat-label">Consistency</div>
+      </div>
+    </div>
+    <div class="chart-card stagger-in" style="animation-delay:0.5s">
+      <div class="chart-title">WPM OVER TIME</div>
+      <canvas id="wpm-chart"></canvas>
+    </div>
+    <div class="results-btns stagger-in" style="animation-delay:0.6s">
+      <button class="btn-result btn-primary" id="btn-retry">Try Again</button>
+      <button class="btn-result btn-secondary" id="btn-change">Change Mode</button>
+      <button class="btn-result btn-copy" id="btn-copy">Copy Result</button>
+    </div>
+    <div class="keyboard-section stagger-in" id="keyboard-section-el" style="animation-delay:0.7s">
+      <div class="keyboard-title">— KEY HEATMAP —</div>
+      <div class="keyboard" id="keyboard"></div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
