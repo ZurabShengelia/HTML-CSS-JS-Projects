@@ -163,4 +163,4 @@ Three files. ~1,800 lines of code total. Zero dependencies.
 
 ## License
 
-MIT — do whatever you want with it.
+ do whatever you want with it. It's free
