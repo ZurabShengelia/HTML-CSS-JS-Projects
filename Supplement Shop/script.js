@@ -1,6 +1,5 @@
 'use strict';
-
-
+ 
 const products = [
   { id:1, name:"GEO Whey Isolate", category:"Protein", price:59.99, oldPrice:74.99, badge:"BESTSELLER", badgeColor:"", rating:5, reviews:312, image:"Images/Protein_Isolate.png", description:"Ultra-pure whey protein isolate with 27g protein per serving. Cold-processed to preserve bioactive fractions. No artificial colors or fillers. Perfect for post-workout recovery and lean muscle growth." },
   { id:2, name:"GEO Protein Concentrate", category:"Protein", price:54.99, oldPrice:69.99, badge:"POPULAR", badgeColor:"", rating:5, reviews:298, image:"Images/Protein_Concentrate.png", description:"Premium whey protein concentrate with 24g protein per serving. Excellent amino acid profile with natural flavor. Ideal for muscle building and post-workout nutrition with superior mixability." },
@@ -18,7 +17,7 @@ const products = [
   { id:14, name:"GEO Magnesium Glycinate", category:"Magnesium", price:26.99, oldPrice:null, badge:null, badgeColor:"", rating:5, reviews:276, image:"Images/Magnesium_Glycinate.png", description:"400mg magnesium glycinate — the most absorbable form for relaxation, sleep quality, and muscle recovery. Essential mineral depleted by intense training. No laxative effect unlike magnesium oxide." },
   { id:15, name:"GEO Magnesium Malate", category:"Magnesium", price:28.99, oldPrice:null, badge:null, badgeColor:"", rating:4, reviews:134, image:"Images/Magnesium_Malate.png", description:"Magnesium malate — the energizing form of magnesium. 400mg per serving. Bound to malic acid for superior absorption and energy metabolism support. Ideal for daytime use." },
 ];
-
+ 
 const reviewsData = [
   { name:"Marcus T.", tag:"Pro Athlete", avatar:"M", rating:5, text:"The Whey Isolate is seriously next-level. Mixes instantly, tastes incredible, and my recovery has been noticeably faster. Been using it for 6 months straight." },
   { name:"Sarah K.", tag:"CrossFit Coach", avatar:"S", rating:5, text:"The Ashwagandha KSM-66 changed my sleep quality overnight. I'm managing stress better and my performance metrics are consistently improving. Can't recommend it enough." },
@@ -27,7 +26,7 @@ const reviewsData = [
   { name:"Derek W.", tag:"Bodybuilder", avatar:"D", rating:5, text:"Pre-Ignite is absolutely elite. Clean energy that lasts 3+ hours with no crash. The focus is insane. I've tried everything on the market and nothing comes close to this formula." },
   { name:"Anya P.", tag:"Personal Trainer", avatar:"A", rating:5, text:"I recommend GEO to every single one of my clients. Third-party tested, transparent labeling, and the results speak for themselves. Finally a brand that actually delivers." },
 ];
-
+ 
 const articlesData = [
   { id:1, title:"The Complete Guide to Protein Supplementation", icon:"fa-dumbbell", category:"Nutrition", readTime:"8 min read", excerpt:"When to take protein, how much you need, and which types work best for your specific training goals. Science-backed protocols for maximum results.", content:"Protein supplementation has revolutionized how athletes approach muscle growth and recovery. Whether you're a competitive bodybuilder, CrossFit athlete, or casual gym-goer, understanding protein timing, quantity, and type is crucial.\n\n**PROTEIN QUANTITY**\nThe consensus among sports nutritionists is 0.7-1g of protein per pound of body weight daily. For a 200lb athlete, that's 140-200g daily spread across 4-5 meals.\n\n**PROTEIN TIMING**\nWhile total daily intake matters most, consuming 20-40g protein within 1-2 hours post-workout optimizes muscle protein synthesis. Whey isolate is ideal here due to fast absorption.\n\n**PROTEIN TYPES**\nWhey Isolate: 27g protein, fastest absorption, perfect post-workout\nWhey Concentrate: 24g protein, more lactose, cost-effective\nPlant-Based: Complete amino profiles, excellent for vegans\n\nConsistency beats perfection. Track your intake for 2 weeks to establish your baseline." },
   { id:2, title:"Pre-Workout Timing: Maximize Your Performance", icon:"fa-fire", category:"Training", readTime:"6 min read", excerpt:"Science-backed timing strategies for optimal energy and focus during training. Find the ideal pre-workout window for your specific training style.", content:"Pre-workout timing is a science. Take it too early and you're crashing by set 5. Too late and the caffeine hasn't kicked in. Here's the exact protocol most elite athletes use.\n\n**THE OPTIMAL WINDOW**\nFor caffeine-based pre-workouts: 45-60 minutes before training\nFor pump-focused (stim-free): 30-45 minutes before\n\n**WHY THIS TIMING WORKS**\nCaffeine peaks in blood plasma 30-60 minutes after ingestion. Beta-alanine and L-Citrulline take 45+ minutes to fully saturate muscles. Syncing these windows gives you maximum performance during peak exertion.\n\n**GI CONSIDERATIONS**\nIf you're sensitive to stomach upset, take with light carbs (banana, rice crisp) 15 minutes prior. This buffers gastric distress while maintaining absorption.\n\n**TESTING YOUR WINDOW**\nTry 45 minutes on first heavy compound movement. Adjust ±15 minutes based on when you feel peak energy and focus during your most critical lifts." },
@@ -36,8 +35,7 @@ const articlesData = [
   { id:5, title:"Creatine: Everything You Need to Know in 2026", icon:"fa-bolt", category:"Supplementation", readTime:"10 min read", excerpt:"The most researched supplement in sports science, decoded. Loading phases, maintenance doses, timing, and what the latest studies actually show.", content:"Creatine monohydrate is the single most researched supplement ever created — over 1000 peer-reviewed studies confirm its safety and efficacy. Yet myths persist. Here's what the actual science says.\n\n**DO YOU NEED A LOADING PHASE?**\nNo. It's optional and only saves 5-7 days.\nLoading protocol: 20g/day split into 4x5g doses for 5-7 days, then 3-5g daily\nNo loading: Just 3-5g daily for 3-4 weeks until saturation\nResult: Same endpoint, different timeline\n\n**HOW MUCH TO TAKE**\n3-5g daily (5g is standard dose)\nBased on body weight: 0.03g per lb\n200lb athlete = 6g daily optimal\n\n**BEST TIMING**\nWith a meal containing carbs and protein (maximizes absorption via glucose-SGLT1 transporter)\nTime of day doesn't matter — creatine works via cumulative saturation, not acute timing\n\n**REAL RESULTS YOU CAN EXPECT**\nStrength: +5-10% in compound movements by week 4\nMuscle mass: +2-5lbs (includes water, which is normal and desirable)\nReps: +1-2 extra reps on max effort sets\nTimeline: Most benefit visible by week 3-4\n\n**TRUTH ABOUT SIDE EFFECTS**\nWater retention: Normal, beneficial for joint health\nHair loss: Zero scientific evidence\nKidney damage: Only in people with pre-existing kidney disease\nDehydration: Increase water intake by 0.5-1L daily" },
   { id:6, title:"Vitamin D3 & K2: The Athlete's Unsung Heroes", icon:"fa-sun", category:"Nutrition", readTime:"8 min read", excerpt:"Why nearly every athlete is deficient, and what optimal levels actually look like for performance, testosterone, and immune resilience.", content:"Most athletes are deficient in Vitamin D3, even those training outdoors regularly. This deficiency costs them 15-20% of potential performance gains, recovery speed, and testosterone levels. Here's the science and the fix.\n\n**DEFICIENCY EPIDEMIC**\nOptimal blood level: 50-80 ng/mL\nAverage athlete: 25-35 ng/mL\nDeficiency (<20 ng/mL): Impairs testosterone, recovery, immune function\n\n**WHY ATHLETES ARE DEFICIENT**\nSun exposure insufficient (need 20-30 mins midday, year-round)\nIndoor training (most athletes train early morning or evening)\nSkin tone (darker skin requires 3-6x more sun exposure)\nGeographic location (winter months produce zero D3)\n\n**THE D3+K2 SYNERGY**\nVitamin D3 increases calcium absorption\nVitamin K2 ensures calcium goes to bones/teeth, NOT arteries\nWithout K2, D3 supplementation can increase arterial calcification\nAlways pair them: 5000 IU D3 + 100mcg K2 (MK-7) daily\n\n**PERFORMANCE BENEFITS**\nTestosterone: +25-30% at optimal D3 levels\nRecovery speed: Faster protein synthesis\nMuscle soreness: Reduced DOMS by 20-25%\nImmune function: 40% fewer colds/infections\nBone density: Massive advantage for athletes over 40\n\n**TESTING & PROTOCOL**\nGet blood test: Ask for 25-hydroxy vitamin D3\nTarget: 60-70 ng/mL\nDosing: 5000 IU daily (or 50000 IU once weekly for compliance)" },
 ];
-
-
+ 
 let cart = [];
 try { cart = JSON.parse(localStorage.getItem('geoCart') || '[]'); } catch(e) { cart = []; }
 let currentFilter = 'All';
@@ -45,17 +43,15 @@ let searchQuery = '';
 let modalProductId = null;
 let modalQtyVal = 1;
 let modalBasePrice = 0;
-
-
+ 
 function $(id) { return document.getElementById(id); }
 function $$(sel) { return document.querySelectorAll(sel); }
 function qs(sel, ctx = document) { return ctx.querySelector(sel); }
-
-
+ 
 function saveCart() {
   try { localStorage.setItem('geoCart', JSON.stringify(cart)); } catch(e) {}
 }
-
+ 
 function addToCart(productId, qty = 1) {
   const p = products.find(x => x.id === productId);
   if (!p) return;
@@ -66,14 +62,14 @@ function addToCart(productId, qty = 1) {
   updateCartUI();
   showToast(p.name, qty);
 }
-
+ 
 function removeFromCart(productId) {
   cart = cart.filter(x => x.id !== productId);
   saveCart();
   updateCartUI();
   renderCart();
 }
-
+ 
 function changeQty(productId, delta) {
   const item = cart.find(x => x.id === productId);
   if (!item) return;
@@ -82,18 +78,18 @@ function changeQty(productId, delta) {
   updateCartUI();
   renderCart();
 }
-
+ 
 function getCartTotal() {
   return cart.reduce((sum, item) => {
     const p = products.find(x => x.id === item.id);
     return sum + (p ? p.price * item.qty : 0);
   }, 0);
 }
-
+ 
 function getCartCount() {
   return cart.reduce((sum, item) => sum + item.qty, 0);
 }
-
+ 
 function updateCartUI() {
   const countEl = $('cartCount');
   const totalEl = $('cartTotal');
@@ -105,7 +101,7 @@ function updateCartUI() {
   countEl.style.transform = 'scale(1.4)';
   setTimeout(() => { countEl.style.transform = ''; }, 200);
 }
-
+ 
 function renderCart() {
   const el = $('cartItems');
   if (!el) return;
@@ -138,8 +134,7 @@ function renderCart() {
     </div>`;
   }).join('');
 }
-
-
+ 
 function showToast(name, qty) {
   const container = $('toastContainer');
   if (!container) return;
@@ -158,7 +153,7 @@ function showToast(name, qty) {
     setTimeout(() => toast.remove(), 500);
   }, 2800);
 }
-
+ 
 function showToast2(msg, type = 'success') {
   const container = $('toastContainer');
   if (!container) return;
@@ -177,8 +172,7 @@ function showToast2(msg, type = 'success') {
     setTimeout(() => toast.remove(), 500);
   }, 3200);
 }
-
-
+ 
 function renderStars(rating, wrapClass = 'stars') {
   let html = `<div class="${wrapClass}">`;
   for (let i = 1; i <= 5; i++) {
@@ -187,13 +181,12 @@ function renderStars(rating, wrapClass = 'stars') {
   html += '</div>';
   return html;
 }
-
-
+ 
 function updateModalPrice() {
   const totalPrice = (modalBasePrice * modalQtyVal).toFixed(2);
   $('modalPrice').textContent = '$' + totalPrice;
 }
-
+ 
 function openProductModal(productId) {
   const p = products.find(x => x.id === productId);
   if (!p) return;
@@ -214,14 +207,13 @@ function openProductModal(productId) {
   modalEl.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
+ 
 function closeProductModal() {
   const modalEl = $('productModal');
   if (modalEl) modalEl.classList.remove('open');
   document.body.style.overflow = '';
 }
-
-
+ 
 function openCart() {
   renderCart();
   const overlay = $('cartOverlay');
@@ -229,14 +221,13 @@ function openCart() {
   document.body.style.overflow = 'hidden';
   updateCartUI();
 }
-
+ 
 function closeCart() {
   const overlay = $('cartOverlay');
   if (overlay) overlay.classList.remove('open');
   document.body.style.overflow = '';
 }
-
-
+ 
 function renderProducts(filter = 'All', query = '') {
   const grid = $('productsGrid');
   if (!grid) return;
@@ -283,7 +274,7 @@ function renderProducts(filter = 'All', query = '') {
   
   attachCursorListeners();
 }
-
+ 
 function renderFilters() {
   const bar = $('filterBar');
   if (!bar) return;
@@ -292,14 +283,14 @@ function renderFilters() {
     `<button class="filter-btn${c === 'All' ? ' active' : ''}" onclick="setFilter('${c}',this)">${c}</button>`
   ).join('');
 }
-
+ 
 function setFilter(cat, btn) {
   currentFilter = cat;
   $$('.filter-btn').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   renderProducts(cat, searchQuery);
 }
-
+ 
 function filterByCategory(cat) {
   if (!$('filterBar') || !$('productsGrid')) {
     
@@ -318,8 +309,7 @@ function filterByCategory(cat) {
   const shopSection = $('shop');
   if (shopSection) shopSection.scrollIntoView({ behavior: 'smooth' });
 }
-
-
+ 
 function renderFeatured() {
   const el = $('featuredList');
   if (!el) return;
@@ -335,8 +325,7 @@ function renderFeatured() {
       <div class="featured-arrow">→</div>
     </div>`).join('');
 }
-
-
+ 
 function renderReviews() {
   const grid = $('reviewsGrid');
   if (!grid) return;
@@ -355,8 +344,7 @@ function renderReviews() {
       </div>
     </div>`).join('');
 }
-
-
+ 
 let revealObserver = null;
 function observeReveal() {
   if (revealObserver) revealObserver.disconnect();
@@ -372,8 +360,7 @@ function observeReveal() {
     if (!el.classList.contains('visible')) revealObserver.observe(el);
   });
 }
-
-
+ 
 function initParticles() {
   const canvas = $('particleCanvas');
   if (!canvas) return;
@@ -419,10 +406,9 @@ function initParticles() {
   }
   draw();
 }
-
-
+ 
 let cursorEl, cursorRingEl, mx = 0, my = 0, rx = 0, ry = 0;
-
+ 
 function attachCursorListeners() {
   $$('a, button, [onclick], .product-card, .cat-card, .featured-item, .filter-btn').forEach(el => {
     if (el._cursorBound) return;
@@ -431,7 +417,7 @@ function attachCursorListeners() {
     el.addEventListener('mouseleave', () => { cursorEl?.classList.remove('active'); cursorRingEl?.classList.remove('active'); });
   });
 }
-
+ 
 function initCursor() {
   cursorEl = $('cursor');
   cursorRingEl = $('cursorRing');
@@ -459,8 +445,7 @@ function initCursor() {
   animateRing();
   attachCursorListeners();
 }
-
-
+ 
 function initNavbar() {
   const nav = $('navbar');
   if (!nav) return;
@@ -478,8 +463,7 @@ function initNavbar() {
     nav.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
 }
-
-
+ 
 function initHamburger() {
   const hamburger = $('hamburger');
   const mobileMenu = $('mobileMenu');
@@ -494,7 +478,7 @@ function initHamburger() {
     if (e.key === 'Escape') { closeMobile(); closeProductModal(); closeCart(); }
   });
 }
-
+ 
 function closeMobile() {
   const hamburger = $('hamburger');
   const mobileMenu = $('mobileMenu');
@@ -502,8 +486,7 @@ function closeMobile() {
   if (mobileMenu) mobileMenu.classList.remove('open');
   document.body.style.overflow = '';
 }
-
-
+ 
 function initModal() {
   const closeBtn = $('modalClose');
   const overlay = $('productModal');
@@ -529,8 +512,7 @@ function initModal() {
     if (modalProductId) { addToCart(modalProductId, modalQtyVal); closeProductModal(); }
   });
 }
-
-
+ 
 function openAppModal(position) {
   const modal = $('appModal');
   const form = $('appForm');
@@ -542,13 +524,13 @@ function openAppModal(position) {
   document.body.style.overflow = 'hidden';
   window.currentPosition = position;
 }
-
+ 
 function closeAppModal() {
   const modal = $('appModal');
   if (modal) modal.classList.remove('open');
   document.body.style.overflow = '';
 }
-
+ 
 function initAppModal() {
   const closeBtn = $('appModalClose');
   const overlay = $('appModal');
@@ -580,8 +562,7 @@ function initAppModal() {
     }, 800);
   });
 }
-
-
+ 
 function openArticleModal(articleId) {
   const article = articlesData.find(a => a.id === articleId);
   if (!article) return;
@@ -596,13 +577,13 @@ function openArticleModal(articleId) {
   document.body.style.overflow = 'hidden';
   window.scrollTo(0, 0);
 }
-
+ 
 function closeArticleModal() {
   const modal = $('articleModal');
   if (modal) modal.classList.remove('open');
   document.body.style.overflow = '';
 }
-
+ 
 function initArticleModal() {
   const closeBtn = $('articleModalClose');
   const overlay = $('articleModal');
@@ -610,8 +591,7 @@ function initArticleModal() {
   if (closeBtn) closeBtn.addEventListener('click', closeArticleModal);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeArticleModal(); });
 }
-
-
+ 
 function checkout() {
   if (cart.length === 0) {
     showToast2('Your cart is empty! Add some products first.', 'error');
@@ -657,7 +637,7 @@ function checkout() {
   document.body.appendChild(checkoutEl);
   document.body.style.overflow = 'hidden';
 }
-
+ 
 function closeCheckout() {
   const modal = document.getElementById('checkoutModal');
   if (modal) {
@@ -666,7 +646,7 @@ function closeCheckout() {
   }
   document.body.style.overflow = '';
 }
-
+ 
 function finishCheckout() {
   cart = [];
   saveCart();
@@ -674,7 +654,7 @@ function finishCheckout() {
   closeCheckout();
   showToast2('Order placed successfully! Thank you for shopping with GEO Supplements!', 'success');
 }
-
+ 
 function initCart() {
   const cartBtn = $('cartBtn');
   const cartClose = $('cartClose');
@@ -684,8 +664,7 @@ function initCart() {
   if (cartOverlay) cartOverlay.addEventListener('click', e => { if (e.target === cartOverlay) closeCart(); });
   $$('.checkout-btn').forEach(btn => btn.addEventListener('click', checkout));
 }
-
-
+ 
 function initSearch() {
   const searchInput = $('searchInput');
   if (!searchInput) return;
@@ -694,8 +673,7 @@ function initSearch() {
     renderProducts(currentFilter, searchQuery);
   });
 }
-
-
+ 
 function handleUrlParams() {
   const params = new URLSearchParams(window.location.search);
   const cat = params.get('cat');
@@ -707,8 +685,7 @@ function handleUrlParams() {
     }, 50);
   }
 }
-
-
+ 
 function hideLoader() {
   const loader = $('loader');
   if (!loader) return;
@@ -718,8 +695,7 @@ function hideLoader() {
     observeReveal();
   }, 1200);
 }
-
-
+ 
 window.addEventListener('load', () => {
   try {
     initParticles();
@@ -737,6 +713,7 @@ window.addEventListener('load', () => {
     initSearch();
     handleUrlParams();
     updateCartUI();
+    initAuth();
     hideLoader();
   } catch(err) {
     console.error('[GEO] Init error:', err);
@@ -745,3 +722,362 @@ window.addEventListener('load', () => {
     if (loader) setTimeout(() => loader.classList.add('hidden'), 800);
   }
 });
+ 
+const AUTH_KEY   = 'geoUsers';
+const SESSION_KEY = 'geoSession';
+ 
+function getUsers() {
+  try { return JSON.parse(localStorage.getItem(AUTH_KEY) || '[]'); } catch { return []; }
+}
+function saveUsers(users) {
+  try { localStorage.setItem(AUTH_KEY, JSON.stringify(users)); } catch {}
+}
+function getSession() {
+  try { return JSON.parse(localStorage.getItem(SESSION_KEY) || 'null'); } catch { return null; }
+}
+function saveSession(user) {
+  try { localStorage.setItem(SESSION_KEY, JSON.stringify(user)); } catch {}
+}
+function clearSession() {
+  try { localStorage.removeItem(SESSION_KEY); } catch {}
+}
+function hashPassword(str) {
+  
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+  }
+  return h.toString(16);
+}
+ 
+let currentUser = getSession();
+ 
+function updateAuthNav() {
+  const loginBtn  = $('authLoginBtn');
+  const userMenu  = $('authUserMenu');
+  const userLabel = $('authUserLabel');
+  if (!loginBtn || !userMenu) return;
+ 
+  if (currentUser) {
+    loginBtn.style.display  = 'none';
+    userMenu.style.display  = 'flex';
+    if (userLabel) {
+      const initials = currentUser.name
+        .split(' ')
+        .map(w => w[0])
+        .join('')
+        .toUpperCase()
+        .slice(0, 2);
+      userLabel.textContent = initials;
+    }
+    updateDropdownInfo();
+  } else {
+    loginBtn.style.display  = 'flex';
+    userMenu.style.display  = 'none';
+  }
+}
+ 
+function openAuthModal(tab = 'login') {
+  const modal = $('authModal');
+  if (!modal) return;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  switchAuthTab(tab);
+  clearAuthErrors();
+}
+ 
+function closeAuthModal() {
+  const modal = $('authModal');
+  if (modal) modal.classList.remove('open');
+  document.body.style.overflow = '';
+  clearAuthErrors();
+}
+ 
+function switchAuthTab(tab) {
+  const loginForm    = $('authLoginForm');
+  const registerForm = $('authRegisterForm');
+  const tabLogin     = $('authTabLogin');
+  const tabRegister  = $('authTabRegister');
+  if (!loginForm || !registerForm) return;
+ 
+  if (tab === 'login') {
+    loginForm.style.display    = 'flex';
+    registerForm.style.display = 'none';
+    tabLogin?.classList.add('active');
+    tabRegister?.classList.remove('active');
+  } else {
+    loginForm.style.display    = 'none';
+    registerForm.style.display = 'flex';
+    tabLogin?.classList.remove('active');
+    tabRegister?.classList.add('active');
+  }
+  clearAuthErrors();
+}
+ 
+function clearAuthErrors() {
+  $$('.auth-error').forEach(el => { el.textContent = ''; el.style.display = 'none'; });
+  $$('.auth-input').forEach(el => el.classList.remove('error'));
+}
+ 
+function showAuthError(id, msg) {
+  const el = $(id);
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+ 
+function handleRegister(e) {
+  e.preventDefault();
+  clearAuthErrors();
+ 
+  const name     = $('regName')?.value.trim()     || '';
+  const email    = $('regEmail')?.value.trim()    || '';
+  const password = $('regPassword')?.value        || '';
+  const confirm  = $('regConfirm')?.value         || '';
+ 
+  let valid = true;
+ 
+  if (name.length < 2) {
+    showAuthError('regNameError', 'Name must be at least 2 characters.');
+    $('regName')?.classList.add('error'); valid = false;
+  }
+  const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRx.test(email)) {
+    showAuthError('regEmailError', 'Please enter a valid email address.');
+    $('regEmail')?.classList.add('error'); valid = false;
+  }
+  if (password.length < 6) {
+    showAuthError('regPasswordError', 'Password must be at least 6 characters.');
+    $('regPassword')?.classList.add('error'); valid = false;
+  }
+  if (password !== confirm) {
+    showAuthError('regConfirmError', 'Passwords do not match.');
+    $('regConfirm')?.classList.add('error'); valid = false;
+  }
+  if (!valid) return;
+ 
+  const users = getUsers();
+  if (users.find(u => u.email.toLowerCase() === email.toLowerCase())) {
+    showAuthError('regEmailError', 'An account with this email already exists.');
+    $('regEmail')?.classList.add('error'); return;
+  }
+ 
+  const newUser = {
+    id:        Date.now(),
+    name,
+    email:     email.toLowerCase(),
+    password:  hashPassword(password),
+    createdAt: new Date().toISOString(),
+  };
+  users.push(newUser);
+  saveUsers(users);
+ 
+  const { password: _pw, ...safeUser } = newUser;
+  currentUser = safeUser;
+  saveSession(safeUser);
+ 
+  closeAuthModal();
+  updateAuthNav();
+  showToast2(`Welcome to GEO, ${name.split(' ')[0]}! 🎉`, 'success');
+}
+ 
+function handleLogin(e) {
+  e.preventDefault();
+  clearAuthErrors();
+ 
+  const email    = $('loginEmail')?.value.trim() || '';
+  const password = $('loginPassword')?.value     || '';
+ 
+  let valid = true;
+  const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRx.test(email)) {
+    showAuthError('loginEmailError', 'Please enter a valid email address.');
+    $('loginEmail')?.classList.add('error'); valid = false;
+  }
+  if (!password) {
+    showAuthError('loginPasswordError', 'Please enter your password.');
+    $('loginPassword')?.classList.add('error'); valid = false;
+  }
+  if (!valid) return;
+ 
+  const users = getUsers();
+  const user  = users.find(u =>
+    u.email.toLowerCase() === email.toLowerCase() &&
+    u.password === hashPassword(password)
+  );
+ 
+  if (!user) {
+    showAuthError('loginEmailError', 'Incorrect email or password.');
+    $('loginEmail')?.classList.add('error');
+    $('loginPassword')?.classList.add('error');
+    return;
+  }
+ 
+  const { password: _pw, ...safeUser } = user;
+  currentUser = safeUser;
+  saveSession(safeUser);
+ 
+  closeAuthModal();
+  updateAuthNav();
+  showToast2(`Welcome back, ${user.name.split(' ')[0]}! 💪`, 'success');
+}
+ 
+function logout() {
+  currentUser = null;
+  clearSession();
+  updateAuthNav();
+  closeUserDropdown();
+  showToast2('You have been logged out.', 'success');
+}
+ 
+function toggleUserDropdown() {
+  const drop = $('userDropdown');
+  if (!drop) return;
+  drop.classList.toggle('open');
+}
+ 
+function closeUserDropdown() {
+  const drop = $('userDropdown');
+  if (drop) drop.classList.remove('open');
+}
+ 
+function togglePasswordVisibility(inputId, btn) {
+  const input = $(inputId);
+  if (!input) return;
+  const isText = input.type === 'text';
+  input.type = isText ? 'password' : 'text';
+  btn.innerHTML = isText
+    ? '<i class="fa-solid fa-eye"></i>'
+    : '<i class="fa-solid fa-eye-slash"></i>';
+}
+ 
+function injectAuthHTML() {
+  
+  const modal = document.createElement('div');
+  modal.id = 'authModal';
+  modal.className = 'auth-modal-overlay';
+  modal.innerHTML = `
+    <div class="auth-modal" role="dialog" aria-modal="true" aria-label="Account">
+      <button class="auth-modal-close" onclick="closeAuthModal()" aria-label="Close">✕</button>
+      <div class="auth-logo">GEO</div>
+ 
+      <div class="auth-tabs">
+        <button id="authTabLogin"    class="auth-tab active" onclick="switchAuthTab('login')">Sign In</button>
+        <button id="authTabRegister" class="auth-tab"        onclick="switchAuthTab('register')">Create Account</button>
+      </div>
+ 
+      <!-- LOGIN FORM -->
+      <form id="authLoginForm" class="auth-form" onsubmit="handleLogin(event)" novalidate>
+        <div class="auth-field">
+          <label for="loginEmail">Email</label>
+          <input id="loginEmail" class="auth-input" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <span id="loginEmailError" class="auth-error"></span>
+        </div>
+        <div class="auth-field">
+          <label for="loginPassword">Password</label>
+          <div class="auth-input-wrap">
+            <input id="loginPassword" class="auth-input" type="password" placeholder="Your password" autocomplete="current-password" required>
+            <button type="button" class="auth-eye" onclick="togglePasswordVisibility('loginPassword',this)" aria-label="Toggle password">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+          <span id="loginPasswordError" class="auth-error"></span>
+        </div>
+        <button type="submit" class="auth-submit">Sign In →</button>
+        <p class="auth-switch">No account? <button type="button" onclick="switchAuthTab('register')">Create one</button></p>
+      </form>
+ 
+      <!-- REGISTER FORM -->
+      <form id="authRegisterForm" class="auth-form" style="display:none" onsubmit="handleRegister(event)" novalidate>
+        <div class="auth-field">
+          <label for="regName">Full Name</label>
+          <input id="regName" class="auth-input" type="text" placeholder="Jane Doe" autocomplete="name" required>
+          <span id="regNameError" class="auth-error"></span>
+        </div>
+        <div class="auth-field">
+          <label for="regEmail">Email</label>
+          <input id="regEmail" class="auth-input" type="email" placeholder="you@example.com" autocomplete="email" required>
+          <span id="regEmailError" class="auth-error"></span>
+        </div>
+        <div class="auth-field">
+          <label for="regPassword">Password</label>
+          <div class="auth-input-wrap">
+            <input id="regPassword" class="auth-input" type="password" placeholder="Min. 6 characters" autocomplete="new-password" required>
+            <button type="button" class="auth-eye" onclick="togglePasswordVisibility('regPassword',this)" aria-label="Toggle password">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+          <span id="regPasswordError" class="auth-error"></span>
+        </div>
+        <div class="auth-field">
+          <label for="regConfirm">Confirm Password</label>
+          <div class="auth-input-wrap">
+            <input id="regConfirm" class="auth-input" type="password" placeholder="Repeat password" autocomplete="new-password" required>
+            <button type="button" class="auth-eye" onclick="togglePasswordVisibility('regConfirm',this)" aria-label="Toggle password">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+          <span id="regConfirmError" class="auth-error"></span>
+        </div>
+        <button type="submit" class="auth-submit">Create Account →</button>
+        <p class="auth-switch">Have an account? <button type="button" onclick="switchAuthTab('login')">Sign in</button></p>
+      </form>
+    </div>`;
+  document.body.appendChild(modal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeAuthModal(); });
+ 
+  
+  const nav = $('navbar');
+  if (!nav) return;
+  const navRight = nav.querySelector('[style*="display:flex"]') || nav.lastElementChild;
+ 
+  
+  const loginBtn = document.createElement('button');
+  loginBtn.id = 'authLoginBtn';
+  loginBtn.className = 'auth-nav-btn';
+  loginBtn.innerHTML = '<i class="fa-solid fa-user"></i><span>Sign In</span>';
+  loginBtn.onclick = () => openAuthModal('login');
+ 
+  
+  const userMenu = document.createElement('div');
+  userMenu.id = 'authUserMenu';
+  userMenu.className = 'auth-user-menu';
+  userMenu.style.display = 'none';
+  userMenu.innerHTML = `
+    <button class="auth-avatar-btn" onclick="toggleUserDropdown()" aria-label="Account menu">
+      <span id="authUserLabel">?</span>
+      <i class="fa-solid fa-chevron-down" style="font-size:9px;color:var(--text3)"></i>
+    </button>
+    <div id="userDropdown" class="auth-dropdown">
+      <div class="auth-dropdown-header">
+        <div class="auth-dropdown-name" id="dropdownUserName"></div>
+        <div class="auth-dropdown-email" id="dropdownUserEmail"></div>
+      </div>
+      <div class="auth-dropdown-divider"></div>
+      <button class="auth-dropdown-item" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+      </button>
+    </div>`;
+ 
+  navRight.insertBefore(loginBtn, navRight.firstChild);
+  navRight.insertBefore(userMenu, navRight.firstChild);
+ 
+  
+  document.addEventListener('click', e => {
+    const menu = $('authUserMenu');
+    if (menu && !menu.contains(e.target)) closeUserDropdown();
+  });
+}
+ 
+function updateDropdownInfo() {
+  const nameEl  = $('dropdownUserName');
+  const emailEl = $('dropdownUserEmail');
+  if (nameEl  && currentUser) nameEl.textContent  = currentUser.name;
+  if (emailEl && currentUser) emailEl.textContent = currentUser.email;
+}
+ 
+function initAuth() {
+  injectAuthHTML();
+  updateAuthNav();
+  if (currentUser) updateDropdownInfo();
+}
