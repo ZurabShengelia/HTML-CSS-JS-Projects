@@ -167,4 +167,4 @@ Works on any static host:
 
 ## License
 
-MIT — free to use, modify, and distribute.
+ free to use, modify, and distribute.
