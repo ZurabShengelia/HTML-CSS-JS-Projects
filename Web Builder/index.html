@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SamtrediaWebBuilder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <div id="topbar">
+    <div class="logo">
+      <div class="logo-mark">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+      </div>
+      <span>SamtrediaWebBuilder</span>
+    </div>
+    <div class="topbar-sep"></div>
+    <div class="canvas-presets">
+      <button class="preset-btn active" data-w="1920" onclick="setCanvasSize(1920,1080,this)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="1"/><path d="M8 20h8M12 18v2"/></svg>
+        Desktop
+      </button>
+      <button class="preset-btn" data-w="1280" onclick="setCanvasSize(1280,800,this)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="1"/><path d="M8 21h8M12 17v4"/></svg>
+        Laptop
+      </button>
+      <button class="preset-btn" data-w="768" onclick="setCanvasSize(768,1024,this)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="18" r="1"/></svg>
+        Tablet
+      </button>
+      <button class="preset-btn" data-w="390" onclick="setCanvasSize(390,844,this)">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="7" y="2" width="10" height="20" rx="3"/><circle cx="12" cy="18" r="0.5" fill="currentColor"/></svg>
+        Mobile
+      </button>
+    </div>
+    <div class="topbar-sep"></div>
+    <div class="zoom-control">
+      <button class="zoom-btn" onclick="adjustZoom(-0.1)">−</button>
+      <span id="zoom-label">100%</span>
+      <button class="zoom-btn" onclick="adjustZoom(0.1)">+</button>
+    </div>
+    <button class="topbar-btn icon-only" onclick="fitCanvasToView()" title="Fit canvas to view">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14H2v6h6v-2M20 10h2V4h-6v2M4 10H2V4h6v2M20 14h2v6h-6v-2"/></svg>
+    </button>
+    <div class="topbar-spacer"></div>
+    <div class="undo-info" id="undo-info">0 history</div>
+    <button class="topbar-btn" onclick="undoAction()" title="Ctrl+Z">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 010 11H11"/></svg>
+      Undo
+    </button>
+    <button class="topbar-btn" onclick="redoAction()" title="Ctrl+Shift+Z">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14l5-5-5-5"/><path d="M20 9H9.5a5.5 5.5 0 000 11H13"/></svg>
+      Redo
+    </button>
+    <button class="topbar-btn" onclick="clearCanvas()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+      Clear
+    </button>
+    <div class="topbar-sep"></div>
+    <button class="topbar-btn" onclick="saveProject()" title="Save project as JSON">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+      Save
+    </button>
+    <button class="topbar-btn" onclick="loadProjectFile()" title="Load project from JSON">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
+      Load
+    </button>
+    <input type="file" id="load-project-input" accept=".json" style="display:none" onchange="handleLoadProject(event)">
+    <div class="topbar-sep"></div>
+    <button class="topbar-btn icon-only" onclick="toggleCanvasTheme()" id="theme-toggle-btn" title="Toggle canvas dark/light">
+      <svg id="theme-icon-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      <svg id="theme-icon-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <div class="topbar-sep"></div>
+    <button class="topbar-btn" onclick="openPreview()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      Preview
+    </button>
+    <button class="topbar-btn primary" onclick="openExportModal()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+      Export
+    </button>
+    <button class="topbar-btn icon-only" onclick="openShortcutsModal()" title="Keyboard shortcuts">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
+    </button>
+    <div class="topbar-sep mobile-only"></div>
+    <button class="topbar-btn icon-only mobile-only" id="mobile-left-btn" onclick="toggleMobileSidebar('left')" title="Elements">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/></svg>
+    </button>
+    <button class="topbar-btn icon-only mobile-only" id="mobile-right-btn" onclick="toggleMobileSidebar('right')" title="Style">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+    </button>
+  </div>
+
+  <div id="main">
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeAllMobileSidebars()"></div>
+    <div id="left-sidebar">
+      <button class="sidebar-close-btn" onclick="closeAllMobileSidebars()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="sidebar-tabs">
+        <button class="stab active" onclick="switchSidebarTab('elements',this)">Elements</button>
+        <button class="stab" onclick="switchSidebarTab('layers',this)">Layers</button>
+      </div>
+
+      
+      <div class="stab-panel active" id="tab-elements">
+        <div class="sidebar-section-label">Basic</div>
+        <div class="elements-grid">
+          <div class="element-card" data-type="text" onmousedown="startSidebarDrag(event,'text')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 10h10M4 14h14M4 18h8"/></svg>
+            </div>
+            <span class="element-label">Text</span>
+          </div>
+          <div class="element-card" data-type="heading" onmousedown="startSidebarDrag(event,'heading')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5v14M20 5v14M4 12h16"/></svg>
+            </div>
+            <span class="element-label">Heading</span>
+          </div>
+          <div class="element-card" data-type="button" onmousedown="startSidebarDrag(event,'button')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="10" rx="5"/></svg>
+            </div>
+            <span class="element-label">Button</span>
+          </div>
+          <div class="element-card" data-type="image" onmousedown="startSidebarDrag(event,'image')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <span class="element-label">Image</span>
+          </div>
+          <div class="element-card" data-type="container" onmousedown="startSidebarDrag(event,'container')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="3"/></svg>
+            </div>
+            <span class="element-label">Box</span>
+          </div>
+          <div class="element-card" data-type="divider" onmousedown="startSidebarDrag(event,'divider')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h18"/></svg>
+            </div>
+            <span class="element-label">Divider</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section-label" style="margin-top:12px">Advanced</div>
+        <div class="elements-grid">
+          <div class="element-card" data-type="input" onmousedown="startSidebarDrag(event,'input')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M7 12h.01M12 12h.01" stroke-width="2"/></svg>
+            </div>
+            <span class="element-label">Input</span>
+          </div>
+          <div class="element-card" data-type="video" onmousedown="startSidebarDrag(event,'video')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <span class="element-label">Video</span>
+          </div>
+          <div class="element-card" data-type="icon" onmousedown="startSidebarDrag(event,'icon')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+            </div>
+            <span class="element-label">Icon</span>
+          </div>
+          <div class="element-card" data-type="badge" onmousedown="startSidebarDrag(event,'badge')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="8" width="20" height="8" rx="4"/></svg>
+            </div>
+            <span class="element-label">Badge</span>
+          </div>
+          <div class="element-card" data-type="section" onmousedown="startSidebarDrag(event,'section')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="1" y="5" width="22" height="14" rx="1"/><path d="M1 10h22M1 15h22" stroke-dasharray="3 2"/></svg>
+            </div>
+            <span class="element-label">Section</span>
+          </div>
+          <div class="element-card" data-type="spacer" onmousedown="startSidebarDrag(event,'spacer')">
+            <div class="element-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 8V5h18v3M3 16v3h18v-3M12 5v14" stroke-dasharray="2 2"/></svg>
+            </div>
+            <span class="element-label">Spacer</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section-label" style="margin-top:12px">Templates</div>
+        <div class="templates-grid">
+          <div class="template-card" onclick="addTemplate('hero')">
+            <div class="template-preview template-hero">
+              <div class="tp-bar tp-wide tp-thick"></div>
+              <div class="tp-bar tp-medium"></div>
+              <div class="tp-btn"></div>
+            </div>
+            <span class="element-label">Hero</span>
+          </div>
+          <div class="template-card" onclick="addTemplate('card')">
+            <div class="template-preview template-card-prev">
+              <div class="tp-img"></div>
+              <div class="tp-bar tp-medium tp-thick" style="margin-top:6px"></div>
+              <div class="tp-bar tp-short"></div>
+            </div>
+            <span class="element-label">Card</span>
+          </div>
+          <div class="template-card" onclick="addTemplate('navbar')">
+            <div class="template-preview template-nav">
+              <div class="tp-bar tp-short tp-thick"></div>
+              <div style="display:flex;gap:4px;margin-left:auto">
+                <div class="tp-dot"></div>
+                <div class="tp-dot"></div>
+                <div class="tp-dot"></div>
+              </div>
+            </div>
+            <span class="element-label">Navbar</span>
+          </div>
+          <div class="template-card" onclick="addTemplate('cta')">
+            <div class="template-preview template-cta">
+              <div class="tp-bar tp-medium tp-thick" style="align-self:center"></div>
+              <div class="tp-bar tp-short" style="align-self:center"></div>
+              <div class="tp-btn" style="align-self:center"></div>
+            </div>
+            <span class="element-label">CTA</span>
+          </div>
+        </div>
+      </div><div class="stab-panel" id="tab-layers">
+        <div class="layers-toolbar">
+          <span class="layers-count" id="layers-count">0 layers</span>
+        </div>
+        <div class="layers-list" id="layers-list">
+          <div class="no-layers">No elements yet.<br>Drag from Elements tab.</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="canvas-wrap">
+      <div id="ruler-x"></div>
+      <div id="ruler-y"></div>
+      <div id="canvas-area"
+        onmousemove="handleCanvasAreaMove(event)"
+        onmousedown="handleCanvasAreaDown(event)"
+        onmouseup="handleCanvasAreaUp(event)">
+        <div id="canvas-viewport">
+          <div id="canvas"
+            ondragover="handleCanvasDragOver(event)"
+            ondrop="handleCanvasDrop(event)"
+            ondragleave="handleCanvasDragLeave(event)"
+            onclick="handleCanvasClick(event)"
+            oncontextmenu="handleContextMenu(event)">
+            <div class="canvas-grid-bg" id="canvas-grid"></div>
+            <div class="canvas-empty" id="canvas-empty">
+              <div class="canvas-empty-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M12 8v8M8 12h8"/></svg>
+              </div>
+              <h3>Start building</h3>
+              <p>Drag elements from the left panel or pick a template</p>
+            </div>
+            <div id="snap-line-h" class="snap-line snap-h"></div>
+            <div id="snap-line-v" class="snap-line snap-v"></div>
+            <div id="selection-box" class="selection-box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="right-sidebar">
+      <button class="sidebar-close-btn" onclick="closeAllMobileSidebars()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <div class="sidebar-tabs">
+        <button class="stab active" onclick="switchPropTab('style',this)">Style</button>
+        <button class="stab" onclick="switchPropTab('layout',this)">Layout</button>
+      </div>
+      <div class="style-panel" id="style-panel">
+        <div class="empty-state">
+          <div class="empty-state-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+          </div>
+          <p>Select an element to edit its properties</p>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="mobile-bottom-bar">
+  <button class="mobile-bar-btn" onclick="toggleMobileSidebar('left')">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18" rx="1"/><rect x="14" y="3" width="7" height="18" rx="1"/></svg>
+    <span>Elements</span>
+  </button>
+  <button class="mobile-bar-btn" onclick="fitCanvasToView()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14H2v6h6v-2M20 10h2V4h-6v2M4 10H2V4h6v2M20 14h2v6h-6v-2"/></svg>
+    <span>Fit</span>
+  </button>
+  <button class="mobile-bar-btn" onclick="undoAction()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 14L4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 010 11H11"/></svg>
+    <span>Undo</span>
+  </button>
+  <button class="mobile-bar-btn" onclick="openExportModal()">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+    <span>Export</span>
+  </button>
+  <button class="mobile-bar-btn" onclick="toggleMobileSidebar('right')">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+    <span>Style</span>
+  </button>
+</div>
+</div>
+
+<div class="modal-overlay" id="export-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Export Code</div>
+        <div class="modal-subtitle">Copy and use this code in any project</div>
+      </div>
+      <button class="modal-close" onclick="closeExportModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="code-tabs">
+        <button class="code-tab active" onclick="switchCodeTab('html',this)">HTML Snippet</button>
+        <button class="code-tab" onclick="switchCodeTab('full',this)">Full Page</button>
+      </div>
+      <div class="code-block">
+        <pre id="export-code"></pre>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="topbar-btn" onclick="closeExportModal()">Close</button>
+      <button class="topbar-btn" onclick="copyElementHtml()">Copy Element</button>
+      <button class="topbar-btn primary" onclick="copyExportCode()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        Copy All
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="img-picker-modal">
+  <div class="modal" style="width:480px">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Set Image</div>
+        <div class="modal-subtitle">Choose a source for your image</div>
+      </div>
+      <button class="modal-close" onclick="closeImgPicker()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="code-tabs">
+        <button class="code-tab active" id="img-tab-url" onclick="switchImgTab('url',this)">Paste URL</button>
+        <button class="code-tab" id="img-tab-upload" onclick="switchImgTab('upload',this)">Upload File</button>
+      </div>
+      <div id="img-panel-url">
+        <input class="style-input" id="img-url-input" placeholder="https://example.com/image.jpg" style="width:100%;margin-bottom:12px">
+        <div class="img-preview-box" id="img-url-preview">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Enter URL above to preview</span>
+        </div>
+      </div>
+      <div id="img-panel-upload" style="display:none">
+        <div class="upload-drop-area" id="upload-drop" onclick="document.getElementById('file-input').click()">
+          <input type="file" id="file-input" accept="image/*" style="display:none" onchange="handleFileUpload(event)">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+          <span>Drop an image here or click to browse</span>
+        </div>
+        <div class="img-preview-box" id="img-upload-preview" style="display:none"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="topbar-btn" onclick="closeImgPicker()">Cancel</button>
+      <button class="topbar-btn primary" onclick="confirmImage()">Apply Image</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="vid-picker-modal">
+  <div class="modal" style="width:500px">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Set Video</div>
+        <div class="modal-subtitle">Upload a video file or paste a YouTube URL</div>
+      </div>
+      <button class="modal-close" onclick="closeVidPicker()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="code-tabs">
+        <button class="code-tab active" id="vid-tab-upload" onclick="switchVidTab('upload',this)">Upload File</button>
+        <button class="code-tab" id="vid-tab-url" onclick="switchVidTab('url',this)">YouTube URL</button>
+      </div>
+
+      <div id="vid-panel-upload">
+        <div class="upload-drop-area" id="vid-upload-drop" onclick="document.getElementById('vid-file-input').click()">
+          <input type="file" id="vid-file-input" accept="video/*" style="display:none" onchange="handleVidFileUpload(event)">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.5"><rect x="2" y="4" width="20" height="16" rx="2"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+          <span>Drop a video here or click to browse</span>
+          <span style="font-size:10px;opacity:0.5">MP4, WebM, OGG supported</span>
+        </div>
+        <div class="vid-preview-box" id="vid-upload-preview" style="display:none">
+          <video id="vid-upload-player" controls style="width:100%;height:100%;border-radius:6px;background:#000"></video>
+        </div>
+      </div>
+
+      <div id="vid-panel-url" style="display:none">
+        <input class="style-input" id="vid-url-input" placeholder="https://youtube.com/watch?v=..." style="width:100%;margin-bottom:12px">
+        <button class="topbar-btn" style="margin-bottom:12px" onclick="previewYouTube()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          Preview
+        </button>
+        <div class="vid-preview-box" id="vid-url-preview">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="2" y="4" width="20" height="16" rx="2"/><polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none"/></svg>
+          <span>Enter a YouTube URL above to preview</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="topbar-btn" onclick="closeVidPicker()">Cancel</button>
+      <button class="topbar-btn primary" onclick="confirmVideo()">Apply Video</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="shortcuts-modal">
+  <div class="modal" style="width:520px">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Keyboard Shortcuts</div>
+        <div class="modal-subtitle">Speed up your workflow</div>
+      </div>
+      <button class="modal-close" onclick="closeShortcutsModal()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="shortcuts-grid">
+        <div class="shortcut-group">
+          <div class="shortcut-group-title">Edit</div>
+          <div class="shortcut-row"><kbd>Ctrl Z</kbd><span>Undo</span></div>
+          <div class="shortcut-row"><kbd>Ctrl Shift Z</kbd><span>Redo</span></div>
+          <div class="shortcut-row"><kbd>Ctrl C</kbd><span>Copy</span></div>
+          <div class="shortcut-row"><kbd>Ctrl V</kbd><span>Paste</span></div>
+          <div class="shortcut-row"><kbd>Ctrl D</kbd><span>Duplicate</span></div>
+          <div class="shortcut-row"><kbd>Delete</kbd><span>Delete selected</span></div>
+        </div>
+        <div class="shortcut-group">
+          <div class="shortcut-group-title">Navigate</div>
+          <div class="shortcut-row"><kbd>←↑→↓</kbd><span>Nudge 1px</span></div>
+          <div class="shortcut-row"><kbd>Shift ←↑→↓</kbd><span>Nudge 8px</span></div>
+          <div class="shortcut-row"><kbd>Ctrl Scroll</kbd><span>Zoom in/out</span></div>
+          <div class="shortcut-row"><kbd>Space + Drag</kbd><span>Pan canvas</span></div>
+          <div class="shortcut-row"><kbd>Shift Click</kbd><span>Multi-select</span></div>
+          <div class="shortcut-row"><kbd>?</kbd><span>This cheatsheet</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="context-menu" class="context-menu">
+  <button class="ctx-item" onclick="ctxDuplicate()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+    Duplicate
+  </button>
+  <button class="ctx-item" onclick="ctxBringForward()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    Bring Forward
+  </button>
+  <button class="ctx-item" onclick="ctxSendBack()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Send Back
+  </button>
+  <button class="ctx-item" onclick="ctxToggleLock()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+    <span id="ctx-lock-label">Lock</span>
+  </button>
+  <div class="ctx-sep"></div>
+  <button class="ctx-item danger" onclick="ctxDelete()">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+    Delete
+  </button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
