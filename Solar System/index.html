@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <canvas id="bg"></canvas>
+ 
+  <div id="ui">
+    <div id="logo">
+      <div id="logo-dot"></div>
+      <span>SOLAR SYSTEM</span>
+    </div>
+ 
+    <div id="top-hud">
+      <div class="hud-pill" id="pause-btn">
+        <span id="pause-icon">⏸</span>
+        <span class="hud-label" id="pause-label">PAUSE</span>
+      </div>
+      <div class="hud-pill" id="scale-btn">
+        <span class="hud-label">ARTISTIC</span>
+        <div class="hud-toggle-track"><div class="hud-toggle-thumb"></div></div>
+        <span class="hud-label" id="scale-label">SCALE</span>
+      </div>
+    </div>
+ 
+    <div id="planet-list">
+      <div class="pl-item active" data-planet="sun">Sun</div>
+      <div class="pl-item" data-planet="mercury">Mercury</div>
+      <div class="pl-item" data-planet="venus">Venus</div>
+      <div class="pl-item" data-planet="earth">Earth</div>
+      <div class="pl-item" data-planet="mars">Mars</div>
+      <div class="pl-item" data-planet="jupiter">Jupiter</div>
+      <div class="pl-item" data-planet="saturn">Saturn</div>
+      <div class="pl-item" data-planet="uranus">Uranus</div>
+      <div class="pl-item" data-planet="neptune">Neptune</div>
+    </div>
+ 
+    <div id="info-panel">
+      <div id="info-header">
+        <div id="info-name"></div>
+        </div>
+      <div id="distance-readout" class="info-section">
+        <span class="section-label">DIST. FROM SUN</span>
+        <span id="distance-val" class="mono-val">—</span>
+      </div>
+      <div id="info-stats"></div>
+      <div id="fact-ticker">
+        <div class="ticker-label">DID YOU KNOW</div>
+        <div id="fact-text"></div>
+        <div id="fact-dots"></div>
+      </div>
+      <div id="compare-btn-wrap">
+        <button id="compare-btn">+ COMPARE PLANET</button>
+      </div>
+    </div>
+ 
+    <div id="compare-panel" class="hidden">
+      <div id="compare-header">
+        <span>COMPARISON</span>
+        <button id="compare-close">✕</button>
+      </div>
+      <div id="compare-body"></div>
+    </div>
+ 
+    <div id="controls">
+      <div class="ctrl-row">
+        <span class="ctrl-label">Speed</span>
+        <input type="range" id="speed-slider" min="0" max="5" step="0.1" value="1">
+        <span class="ctrl-val" id="speed-val">1x</span>
+      </div>
+      <div class="ctrl-row">
+        <span class="ctrl-label">Orbits</span>
+        <button class="toggle-btn active" id="orbit-toggle">ON</button>
+      </div>
+    </div>
+ 
+    <div id="minimap">
+      <canvas id="minimap-canvas" width="130" height="130"></canvas>
+      <div class="minimap-label">TOP VIEW</div>
+    </div>
+ 
+ 
+  </div>
+ 
+  <div id="crosshair"></div>
+ 
+  <div id="compare-selector" class="hidden">
+    <div id="compare-selector-title">Select planet to compare</div>
+    <div id="compare-selector-grid"></div>
+    <button id="compare-selector-close">Cancel</button>
+  </div>
+ 
+  <div id="loading">
+    <div id="loading-logo">
+      <div id="loading-dot"></div>
+      <span>SOLAR SYSTEM</span>
+    </div>
+    <div id="loading-text">INITIALIZING</div>
+    <div id="loading-bar"><div id="loading-fill"></div></div>
+    <div id="loading-sub">Calibrating orbital mechanics</div>
+  </div>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
