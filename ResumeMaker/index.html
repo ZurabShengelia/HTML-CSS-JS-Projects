@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResuméCraft — Professional Resume Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="grain-overlay" aria-hidden="true"></div>
+<div class="shimmer-screen" id="shimmerScreen" aria-hidden="true">
+  <div class="shimmer-logo">Resumé<em>Craft</em></div>
+  <div class="shimmer-tagline">Crafting careers, one line at a time</div>
+  <div class="shimmer-progress"><div class="shimmer-fill"></div></div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">Resumé<em>Craft</em></a>
+    <div class="nav-links">
+      <a href="#features-section" class="nav-link" id="featuresLink">Features</a>
+      <a href="#templates-section" class="nav-link" id="templatesLink">Templates</a>
+      <a href="#export-section" class="nav-link" id="exportLink">Export</a>
+    </div>
+    <button class="nav-cta" id="navStartBtn" type="button">
+      <span>Start Building</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </button>
+    <button class="nav-hamburger" id="navHamburger" type="button" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="navMobileMenu">
+    <a href="#features-section" class="nav-mobile-link" id="featuresLinkM">Features</a>
+    <a href="#templates-section" class="nav-mobile-link" id="templatesLinkM">Templates</a>
+    <a href="#export-section" class="nav-mobile-link" id="exportLinkM">Export</a>
+    <button class="nav-cta mobile" id="navStartBtnM" type="button">Start Building</button>
+  </div>
+</nav>
+
+<main class="app-main" id="appMain">
+  <div class="builder-layout">
+
+    <section class="form-panel" id="formPanel">
+      <div class="progress-header">
+        <div class="progress-bar-outer">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="step-track" id="stepTrack">
+        <button class="step-node active" data-step="1" type="button">
+          <span class="step-num">1</span>
+          <div class="step-node-label">Info</div>
+        </button>
+        <div class="step-rail"></div>
+        <button class="step-node" data-step="2" type="button">
+          <span class="step-num">2</span>
+          <div class="step-node-label">Summary</div>
+        </button>
+        <div class="step-rail"></div>
+        <button class="step-node" data-step="3" type="button">
+          <span class="step-num">3</span>
+          <div class="step-node-label">Experience</div>
+        </button>
+        <div class="step-rail"></div>
+        <button class="step-node" data-step="4" type="button">
+          <span class="step-num">4</span>
+          <div class="step-node-label">Education</div>
+        </button>
+        <div class="step-rail"></div>
+        <button class="step-node" data-step="5" type="button">
+          <span class="step-num">5</span>
+          <div class="step-node-label">Skills</div>
+        </button>
+        <div class="step-rail"></div>
+        <button class="step-node" data-step="6" type="button">
+          <span class="step-num">6</span>
+          <div class="step-node-label">Projects</div>
+        </button>
+        <div class="step-rail"></div>
+        <button class="step-node" data-step="7" type="button">
+          <span class="step-num">7</span>
+          <div class="step-node-label">Design</div>
+        </button>
+      </div>
+
+      <div class="steps-wrap" id="stepsWrap">
+
+        <div class="step-pane active" data-step="1">
+          <div class="step-head">
+            <div class="step-eyebrow">Step 01 · Personal</div>
+            <h2 class="step-title">Personal Information</h2>
+            <p class="step-sub">Your professional identity — make every detail count.</p>
+          </div>
+          <div class="photo-row">
+            <div class="photo-zone" id="photoZone" tabindex="0" role="button" aria-label="Upload profile photo">
+              <input type="file" id="photoInput" accept="image/*" class="v-hidden">
+              <div class="photo-ghost" id="photoGhost">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="26" height="26"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                <span>Upload Photo</span>
+                <em>Optional · JPG or PNG</em>
+              </div>
+              <img id="photoPreview" class="photo-img hidden" alt="Profile photo">
+              <button class="photo-clear hidden" id="photoClear" type="button" title="Remove photo" aria-label="Remove photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="10" height="10"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+            </div>
+            <div class="photo-label-area">
+              <div class="photo-label-title">Profile Photo</div>
+              <div class="photo-label-hint">Adds a personal touch. Recommended size: 200×200px or larger.</div>
+            </div>
+          </div>
+          <div class="fg-grid">
+            <div class="fg half">
+              <label class="fl" for="fullName">Full Name <span class="req">*</span></label>
+              <input type="text" class="fi" id="fullName" placeholder="Alexandra Chen" data-key="fullName" autocomplete="name">
+              <div class="fe" id="fullName-error"></div>
+            </div>
+            <div class="fg half">
+              <label class="fl" for="jobTitle">Professional Title</label>
+              <input type="text" class="fi" id="jobTitle" placeholder="Senior Product Designer" data-key="jobTitle">
+            </div>
+            <div class="fg half">
+              <label class="fl" for="email">Email Address</label>
+              <input type="email" class="fi" id="email" placeholder="alex@studio.co" data-key="email" autocomplete="email">
+              <div class="fe" id="email-error"></div>
+            </div>
+            <div class="fg half">
+              <label class="fl" for="phone">Phone Number</label>
+              <input type="tel" class="fi" id="phone" placeholder="+1 (555) 000-0000" data-key="phone" autocomplete="tel">
+            </div>
+            <div class="fg half">
+              <label class="fl" for="location">Location</label>
+              <input type="text" class="fi" id="location" placeholder="New York, NY" data-key="location">
+            </div>
+            <div class="fg half">
+              <label class="fl" for="linkedin">LinkedIn Profile</label>
+              <input type="text" class="fi" id="linkedin" placeholder="linkedin.com/in/alexchen" data-key="linkedin">
+            </div>
+            <div class="fg half">
+              <label class="fl" for="portfolio">Portfolio / Website</label>
+              <input type="text" class="fi" id="portfolio" placeholder="alexchen.design" data-key="portfolio">
+            </div>
+            <div class="fg half">
+              <label class="fl" for="github">GitHub Profile</label>
+              <input type="text" class="fi" id="github" placeholder="github.com/alexchen" data-key="github">
+            </div>
+          </div>
+        </div>
+
+        <div class="step-pane" data-step="2">
+          <div class="step-head">
+            <div class="step-eyebrow">Step 02 · Summary</div>
+            <h2 class="step-title">Professional Summary</h2>
+            <p class="step-sub">Your narrative — compelling, concise, and unforgettable.</p>
+          </div>
+          <div class="fg full">
+            <div class="fl-row">
+              <label class="fl" for="summary">Summary</label>
+              <span class="char-badge"><span id="summaryCount">0</span> / 600</span>
+            </div>
+            <textarea class="fi ft" id="summary" placeholder="Results-driven professional with 8+ years crafting digital products at the intersection of aesthetics and business impact. Known for translating complex requirements into elegant, user-centered solutions…" data-key="summary" maxlength="600" rows="7"></textarea>
+            <div class="summary-footer">
+              <span class="word-count-info"><span id="wordCount">0</span> words</span>
+              <button class="ai-btn" id="aiEnhanceBtn" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+                AI Enhance
+              </button>
+            </div>
+            <div class="summary-tips">
+              <div class="tip-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="20 6 9 18 4 13"/></svg>
+                Use power verbs (Architected, Led, Delivered)
+              </div>
+              <div class="tip-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="20 6 9 18 4 13"/></svg>
+                Quantify achievements where possible
+              </div>
+              <div class="tip-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><polyline points="20 6 9 18 4 13"/></svg>
+                Aim for 3–5 impactful sentences
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step-pane" data-step="3">
+          <div class="step-head">
+            <div class="step-eyebrow">Step 03 · Experience</div>
+            <h2 class="step-title">Work Experience</h2>
+            <p class="step-sub">Lead with impact — quantify your achievements whenever possible.</p>
+          </div>
+          <div id="experienceList" class="dyn-list"></div>
+          <button class="add-btn" id="addExperienceBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Work Experience
+          </button>
+        </div>
+
+        <div class="step-pane" data-step="4">
+          <div class="step-head">
+            <div class="step-eyebrow">Step 04 · Education</div>
+            <h2 class="step-title">Education</h2>
+            <p class="step-sub">Your academic foundation and credentials.</p>
+          </div>
+          <div id="educationList" class="dyn-list"></div>
+          <button class="add-btn" id="addEducationBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Education
+          </button>
+        </div>
+
+        <div class="step-pane" data-step="5">
+          <div class="step-head">
+            <div class="step-eyebrow">Step 05 · Skills</div>
+            <h2 class="step-title">Skills</h2>
+            <p class="step-sub">Type a skill and press Enter or select from suggestions.</p>
+          </div>
+          <div class="fg full">
+            <label class="fl" for="skillInput">Add Skills</label>
+            <div class="skill-input-wrap">
+              <input type="text" class="fi" id="skillInput" placeholder="e.g. JavaScript, Leadership, Figma…" autocomplete="off">
+              <div class="skill-dropdown hidden" id="skillDropdown"></div>
+            </div>
+            <div class="skill-chips" id="skillChips"></div>
+            <div class="skills-count-hint" id="skillsCountHint"></div>
+          </div>
+        </div>
+
+        <div class="step-pane" data-step="6">
+          <div class="step-head">
+            <div class="step-eyebrow">Step 06 · Projects</div>
+            <h2 class="step-title">Projects & Certifications</h2>
+            <p class="step-sub">Optional — but they make you stand out from the crowd.</p>
+          </div>
+          <div class="sub-section-label">Projects</div>
+          <div id="projectsList" class="dyn-list"></div>
+          <button class="add-btn" id="addProjectBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Project
+          </button>
+        </div>
+
+        <div class="step-pane" data-step="7" id="templates-section">
+          <div class="step-head">
+            <div class="step-eyebrow">Step 07 · Design</div>
+            <h2 class="step-title">Template & Style</h2>
+            <p class="step-sub">Choose your layout and accent — then download your resume.</p>
+          </div>
+
+          <div class="design-block">
+            <div class="design-label">Layout Template</div>
+            <div class="tpl-cards">
+              <div class="tpl-card active" data-template="classic" tabindex="0" role="button" aria-pressed="true">
+                <div class="tpl-thumb classic-t">
+                  <div class="ct-side"><div class="ct-circle"></div><div class="ct-bar"></div><div class="ct-bar s"></div><div class="ct-bar"></div><div class="ct-bar s"></div></div>
+                  <div class="ct-main"><div class="ct-line w"></div><div class="ct-line a"></div><div class="ct-hr"></div><div class="ct-line"></div><div class="ct-line m"></div><div class="ct-line s"></div></div>
+                </div>
+                <div class="tpl-info">
+                  <div class="tpl-name">Classic Elegant</div>
+                  <div class="tpl-hint">Sidebar · Photo · Serif</div>
+                </div>
+              </div>
+              <div class="tpl-card" data-template="modern" tabindex="0" role="button" aria-pressed="false">
+                <div class="tpl-thumb modern-t">
+                  <div class="mt-name"></div><div class="mt-title"></div><div class="mt-contacts"></div><div class="mt-hr"></div>
+                  <div class="mt-row"><span class="mt-dot"></span><div><div class="ct-line"></div><div class="ct-line s"></div></div></div>
+                  <div class="mt-row"><span class="mt-dot"></span><div><div class="ct-line m"></div><div class="ct-line s"></div></div></div>
+                </div>
+                <div class="tpl-info">
+                  <div class="tpl-name">Modern Minimal</div>
+                  <div class="tpl-hint">Single col · Timeline</div>
+                </div>
+              </div>
+              <div class="tpl-card" data-template="executive" tabindex="0" role="button" aria-pressed="false">
+                <div class="tpl-thumb exec-t">
+                  <div class="et-head"><div class="ct-line w wh"></div><div class="ct-line m wh"></div></div>
+                  <div class="et-body"><div class="et-al"></div><div class="ct-line"></div><div class="ct-line m"></div><div class="et-al"></div><div class="ct-line"></div></div>
+                </div>
+                <div class="tpl-info">
+                  <div class="tpl-name">Bold Executive</div>
+                  <div class="tpl-hint">Dark header · Strong type</div>
+                </div>
+              </div>
+              <div class="tpl-card" data-template="creative" tabindex="0" role="button" aria-pressed="false">
+                <div class="tpl-thumb creative-t">
+                  <div class="crt-bar"></div><div class="crt-name"></div><div class="crt-rule"></div>
+                  <div class="crt-section"><div class="crt-tag"></div><div class="ct-line m"></div><div class="ct-line s"></div></div>
+                  <div class="crt-section"><div class="crt-tag"></div><div class="ct-line m"></div></div>
+                </div>
+                <div class="tpl-info">
+                  <div class="tpl-name">Creative Pro</div>
+                  <div class="tpl-hint">Colorful · Modern</div>
+                </div>
+              </div>
+              <div class="tpl-card" data-template="minimalist" tabindex="0" role="button" aria-pressed="false">
+                <div class="tpl-thumb minimalist-t">
+                  <div class="min-header"></div><div class="min-hr"></div>
+                  <div class="min-item"><span class="min-dot"></span><div class="min-content"><div class="ct-line s"></div><div class="ct-line xs"></div></div></div>
+                  <div class="min-item"><span class="min-dot"></span><div class="min-content"><div class="ct-line m"></div></div></div>
+                </div>
+                <div class="tpl-info">
+                  <div class="tpl-name">Minimalist</div>
+                  <div class="tpl-hint">Ultra clean · Dots</div>
+                </div>
+              </div>
+              <div class="tpl-card" data-template="academic" tabindex="0" role="button" aria-pressed="false">
+                <div class="tpl-thumb academic-t">
+                  <div class="ac-title"></div><div class="ac-subtitle"></div><div class="ac-hr"></div>
+                  <div class="ac-section"><div class="ac-heading"></div><div class="ct-line"></div><div class="ct-line m"></div></div>
+                  <div class="ac-section"><div class="ac-heading"></div><div class="ct-line s"></div></div>
+                </div>
+                <div class="tpl-info">
+                  <div class="tpl-name">Academic</div>
+                  <div class="tpl-hint">Formal · Professional</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="design-block" id="export-section">
+            <div class="design-label">Accent Color</div>
+            <div class="accent-swatches">
+              <button class="ac-swatch active" data-color="gold" type="button" title="Gold" style="--sc:#c9a96e"><span class="ac-label">Gold</span></button>
+              <button class="ac-swatch" data-color="midnight" type="button" title="Midnight Blue" style="--sc:#2a4a7f"><span class="ac-label">Midnight</span></button>
+              <button class="ac-swatch" data-color="forest" type="button" title="Forest Green" style="--sc:#2d6a4f"><span class="ac-label">Forest</span></button>
+              <button class="ac-swatch" data-color="burgundy" type="button" title="Burgundy" style="--sc:#7b2d3e"><span class="ac-label">Burgundy</span></button>
+              <button class="ac-swatch" data-color="slate" type="button" title="Slate" style="--sc:#546e7a"><span class="ac-label">Slate</span></button>
+            </div>
+          </div>
+
+          <div class="design-block">
+            <div class="design-label">Font Pairing</div>
+            <div class="font-pairs">
+              <button class="font-pair active" data-font="serif" type="button">
+                <span class="fp-sample" style="font-family:Georgia,serif">Aa</span>
+                <span class="fp-name">Serif Classic</span>
+              </button>
+              <button class="font-pair" data-font="sans" type="button">
+                <span class="fp-sample" style="font-family:Arial,sans-serif">Aa</span>
+                <span class="fp-name">Sans Modern</span>
+              </button>
+              <button class="font-pair" data-font="mixed" type="button">
+                <span class="fp-sample" style="font-family:Georgia,serif;font-style:italic">Aa</span>
+                <span class="fp-name">Mixed</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="design-block export-block">
+            <div class="design-label">Export Options</div>
+            <div class="export-actions">
+              <button class="export-action-btn primary" id="exportDownloadBtn" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </button>
+              <button class="export-action-btn secondary" id="exportCopyBtn" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                Copy Plain Text
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="step-nav-bar">
+        <button class="snb-back" id="backBtn" type="button" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="15 18 9 12 15 6"/></svg>
+          Back
+        </button>
+        <span class="snb-count" id="stepLabelDisplay">1 / 7</span>
+        <button class="snb-next" id="nextBtn" type="button">
+          Next
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="panel-footer">
+        <button class="pf-btn" id="saveDraftBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+          Save Draft
+        </button>
+        <button class="pf-btn danger" id="resetBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+          Start Over
+        </button>
+      </div>
+
+    </section>
+
+    <aside class="preview-panel" id="previewPanel">
+      <div class="preview-bar">
+        <div class="pb-left">
+          <span class="pb-label">Live Preview</span>
+          <span class="pb-tpl-badge" id="tplBadge">Classic Elegant</span>
+        </div>
+        <div class="pb-right">
+          <div class="overflow-warn hidden" id="overflowWarn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="11" height="11"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Exceeds 1 page
+          </div>
+          <div class="pb-zoom">
+            <button class="pb-icon-btn" id="zoomOutBtn" type="button" title="Zoom out" aria-label="Zoom out">−</button>
+            <span class="pb-zoom-val" id="zoomVal">100%</span>
+            <button class="pb-icon-btn" id="zoomInBtn" type="button" title="Zoom in" aria-label="Zoom in">+</button>
+          </div>
+          <button class="pb-icon-btn" id="copyBtn" type="button" title="Copy plain text" aria-label="Copy plain text">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          </button>
+          <button class="pb-pdf-btn" id="downloadBtn" type="button" title="Download PDF">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="preview-scroll" id="previewScroll">
+        <div class="a4-stage" id="a4Stage">
+          <div class="resume-a4" id="resumeA4">
+            <div id="resumeContent"></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="mob-prev-btn" id="mobPrevBtn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Preview Resume
+      </button>
+    </aside>
+
+  </div>
+</main>
+
+<div class="modal-bg hidden" id="resetModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <div class="modal-ico">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="26" height="26"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
+    <h3 class="modal-ttl" id="modalTitle">Reset Everything?</h3>
+    <p class="modal-msg">All resume data and saved drafts will be permanently deleted. This action cannot be undone.</p>
+    <div class="modal-acts">
+      <button class="mb ghost" id="cancelResetBtn" type="button">Keep Editing</button>
+      <button class="mb danger" id="confirmResetBtn" type="button">Yes, Reset</button>
+    </div>
+  </div>
+</div>
+
+<div class="features-section" id="features-section">
+  <div class="features-inner">
+    <div class="features-header">
+      <div class="features-eyebrow">Why ResuméCraft</div>
+      <h2 class="features-title">Everything you need to land the job</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        </div>
+        <div class="feature-title">AI Enhancement</div>
+        <div class="feature-desc">Automatically elevate your summary with power verbs and professional language.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="feature-title">Live Preview</div>
+        <div class="feature-desc">See your resume update in real time as you type. No refreshes needed.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <div class="feature-title">PDF Export</div>
+        <div class="feature-desc">Download a pixel-perfect, ATS-friendly PDF resume in one click.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+        </div>
+        <div class="feature-title">Auto-Save</div>
+        <div class="feature-desc">Your work is saved automatically. Come back anytime and pick up where you left off.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <div class="feature-title">6 Pro Templates</div>
+        <div class="feature-desc">Choose from Classic, Modern, or Executive layouts — all recruiter-approved.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="feature-title">Privacy First</div>
+        <div class="feature-desc">100% client-side. Your data never leaves your browser. No accounts needed.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast-port" id="toastPort" aria-live="polite" aria-atomic="true"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
