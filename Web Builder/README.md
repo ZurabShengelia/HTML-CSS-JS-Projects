@@ -1,4 +1,4 @@
-# SamtrediaWebBuilder
+# WebBuilder
 
 A fast, browser-based visual website builder. Design layouts by dragging elements onto a canvas, styling them with a live property panel, and exporting clean HTML — no build tools, no dependencies, no install required.
 
@@ -128,7 +128,7 @@ Numeric precision controls for:
 ## Project Structure
 
 ```
-SamtrediaWebBuilder/
+WebBuilder/
 ├── index.html      # App shell, all modals and sidebar markup
 ├── script.js       # All application logic — state, rendering, interactions, export
 └── styles.css      # Full dark-theme UI styles using CSS custom properties
@@ -142,7 +142,7 @@ No frameworks, no bundlers, no `node_modules`. Pure HTML, CSS, and vanilla JavaS
 
 ```bash
 git clone 
-cd SamtrediaWebBuilder
+cd WebBuilder
 # Open in browser — no server needed
 open index.html
 ```
