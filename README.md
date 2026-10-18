@@ -50,7 +50,7 @@ Clone the repository:
 
 Bash
 git clone https://github.com/
-Navigate to any project folder (e.g., cd SamtrediaOS).
+Navigate to any project folder 
 
 Open index.html in your favorite browser.
 
