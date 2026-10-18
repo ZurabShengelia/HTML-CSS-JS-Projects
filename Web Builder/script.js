@@ -84,7 +84,7 @@ const TEMPLATES = {
   ],
   navbar: (cx, cy) => [
     {type:'container',x:cx,y:cy,width:960,height:64,bgColor:'#ffffff',borderRadius:12,padding:0,borderColor:'#e2e8f0',borderWidth:1,opacity:100,shadow:true,shadowX:0,shadowY:2,shadowBlur:12,shadowSpread:0,shadowColor:'#0000000d',name:'Navbar'},
-    {type:'heading',x:cx+20,y:cy+20,width:100,height:26,content:'SamtrediaWebBuilder',fontSize:16,fontWeight:'700',color:'#0f172a',bgColor:'transparent',padding:0,borderRadius:0,textAlign:'left',lineHeight:1.2,letterSpacing:-0.5,opacity:100,shadow:false,shadowX:0,shadowY:0,shadowBlur:0,shadowSpread:0,shadowColor:'#00000033',name:'Logo'},
+    {type:'heading',x:cx+20,y:cy+20,width:100,height:26,content:'WebBuilder',fontSize:16,fontWeight:'700',color:'#0f172a',bgColor:'transparent',padding:0,borderRadius:0,textAlign:'left',lineHeight:1.2,letterSpacing:-0.5,opacity:100,shadow:false,shadowX:0,shadowY:0,shadowBlur:0,shadowSpread:0,shadowColor:'#00000033',name:'Logo'},
     {type:'text',x:cx+200,y:cy+22,width:60,height:22,content:'Features',fontSize:14,fontWeight:'500',color:'#475569',bgColor:'transparent',padding:0,borderRadius:0,textAlign:'left',lineHeight:1.2,letterSpacing:0,opacity:100,shadow:false,shadowX:0,shadowY:0,shadowBlur:0,shadowSpread:0,shadowColor:'#00000033',name:'Nav Link 1'},
     {type:'text',x:cx+276,y:cy+22,width:60,height:22,content:'Pricing',fontSize:14,fontWeight:'500',color:'#475569',bgColor:'transparent',padding:0,borderRadius:0,textAlign:'left',lineHeight:1.2,letterSpacing:0,opacity:100,shadow:false,shadowX:0,shadowY:0,shadowBlur:0,shadowSpread:0,shadowColor:'#00000033',name:'Nav Link 2'},
     {type:'text',x:cx+352,y:cy+22,width:56,height:22,content:'Docs',fontSize:14,fontWeight:'500',color:'#475569',bgColor:'transparent',padding:0,borderRadius:0,textAlign:'left',lineHeight:1.2,letterSpacing:0,opacity:100,shadow:false,shadowX:0,shadowY:0,shadowBlur:0,shadowSpread:0,shadowColor:'#00000033',name:'Nav Link 3'},
@@ -94,7 +94,7 @@ const TEMPLATES = {
   cta: (cx, cy) => [
     {type:'section',x:cx,y:cy,width:760,height:280,bgColor:'#0f172a',borderRadius:20,padding:60,opacity:100,shadow:true,shadowX:0,shadowY:20,shadowBlur:60,shadowSpread:0,shadowColor:'#0000004d',name:'CTA Section'},
     {type:'heading',x:cx+80,y:cy+60,width:600,height:80,content:'Ready to get started?',fontSize:38,fontWeight:'700',color:'#f8fafc',bgColor:'transparent',padding:0,borderRadius:0,textAlign:'center',lineHeight:1.2,letterSpacing:-0.8,opacity:100,shadow:false,shadowX:0,shadowY:0,shadowBlur:0,shadowSpread:0,shadowColor:'#00000033',name:'CTA Heading'},
-    {type:'text',x:cx+140,y:cy+148,width:480,height:40,content:'Join thousands of teams already building with SamtrediaWebBuilder.',fontSize:15,fontWeight:'400',color:'#94a3b8',bgColor:'transparent',padding:0,borderRadius:0,textAlign:'center',lineHeight:1.6,letterSpacing:0,opacity:100,shadow:false,shadowX:0,shadowY:0,shadowBlur:0,shadowSpread:0,shadowColor:'#00000033',name:'CTA Subtitle'},
+    {type:'text',x:cx+140,y:cy+148,width:480,height:40,content:'Join thousands of teams already building with WebBuilder.',fontSize:15,fontWeight:'400',color:'#94a3b8',bgColor:'transparent',padding:0,borderRadius:0,textAlign:'center',lineHeight:1.6,letterSpacing:0,opacity:100,shadow:false,shadowX:0,shadowY:0,shadowBlur:0,shadowSpread:0,shadowColor:'#00000033',name:'CTA Subtitle'},
     {type:'button',x:cx+250,y:cy+208,width:160,height:48,content:'Start for free',fontSize:15,fontWeight:'600',color:'#0f172a',bgColor:'#f8fafc',padding:16,borderRadius:10,textAlign:'center',opacity:100,shadow:true,shadowX:0,shadowY:4,shadowBlur:20,shadowSpread:0,shadowColor:'#ffffff22',name:'CTA Button'},
     {type:'button',x:cx+424,y:cy+208,width:136,height:48,content:'Talk to sales',fontSize:15,fontWeight:'500',color:'#94a3b8',bgColor:'rgba(255,255,255,0.06)',padding:16,borderRadius:10,textAlign:'center',opacity:100,shadow:false,shadowX:0,shadowY:0,shadowBlur:0,shadowSpread:0,shadowColor:'#00000033',name:'CTA Secondary'},
   ],
@@ -199,13 +199,13 @@ function toggleCanvasTheme(){
   const sun=document.getElementById('theme-icon-sun');
   if(moon)moon.style.display=state.canvasDark?'none':'block';
   if(sun)sun.style.display=state.canvasDark?'block':'none';
-  try{localStorage.setItem('samtrediawebbuilder_dark',state.canvasDark?'1':'0')}catch(e){}
+  try{localStorage.setItem('webbuilder_dark',state.canvasDark?'1':'0')}catch(e){}
   showToast('Canvas: '+(state.canvasDark?'Dark':'Light'));
 }
 
 function loadCanvasTheme(){
   try{
-    const v=localStorage.getItem('samtrediawebbuilder_dark');
+    const v=localStorage.getItem('webbuilder_dark');
     if(v==='1'){state.canvasDark=true;document.getElementById('canvas').classList.add('dark-canvas');
       const moon=document.getElementById('theme-icon-moon');const sun=document.getElementById('theme-icon-sun');
       if(moon)moon.style.display='none';if(sun)sun.style.display='block';
@@ -219,7 +219,7 @@ function saveProject(){
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
   a.href=url;
-  a.download='samtrediawebbuilder-project-'+(new Date().toISOString().slice(0,10))+'.json';
+  a.download='webbuilder-project-'+(new Date().toISOString().slice(0,10))+'.json';
   a.click();
   setTimeout(()=>URL.revokeObjectURL(url),3000);
   showToast('Project saved!');
@@ -1229,7 +1229,7 @@ function generateFullPage(){
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SamtrediaWebBuilder</title>
+<title>WebBuilder</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -1384,12 +1384,12 @@ document.addEventListener('wheel',e=>{
 },{passive:false});
 
 function autoSave(){
-  try{localStorage.setItem('samtrediawebbuilder_state',JSON.stringify({elements:state.elements,canvasW:state.canvasW,canvasH:state.canvasH,idCounter:state.idCounter}));}catch(err){}
+  try{localStorage.setItem('webbuilder_state',JSON.stringify({elements:state.elements,canvasW:state.canvasW,canvasH:state.canvasH,idCounter:state.idCounter}));}catch(err){}
 }
 
 function loadSaved(){
   try{
-    const saved=localStorage.getItem('samtrediawebbuilder_state');
+    const saved=localStorage.getItem('webbuilder_state');
     if(!saved)return;
     const data=JSON.parse(saved);
     if(data.elements&&data.elements.length>0){
